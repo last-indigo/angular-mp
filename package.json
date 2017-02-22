@@ -4,7 +4,8 @@
   "description": "Angular2 training",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/last-indigo/angular-mp/issues"
   },
-  "homepage": "https://github.com/last-indigo/angular-mp#readme"
+  "homepage": "https://github.com/last-indigo/angular-mp#readme",
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  }
 }
