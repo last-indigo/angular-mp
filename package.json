@@ -1,0 +1,20 @@
+{
+  "name": "angular-mp",
+  "version": "1.0.0",
+  "description": "Angular2 training",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/last-indigo/angular-mp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/last-indigo/angular-mp/issues"
+  },
+  "homepage": "https://github.com/last-indigo/angular-mp#readme"
+}
