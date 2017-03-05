@@ -1,3 +1,3 @@
 export class AppArtemService {
-  public id: string = '%id from AppArtemService%';
+  public welcomeMessage: string = '%Welcome from AppArtemService%';
 }

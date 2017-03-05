@@ -6,11 +6,11 @@ import { AppArtemService } from './app-artem.service';
   templateUrl: 'app-artem.component.html'
 })
 export class AppArtemComponent {
-  public myName: string;
+  public welcomeMessage: string;
 
   constructor(
     private appArtemService: AppArtemService
   ) {
-    this.myName = `"Component id: ${appArtemService.id}"`;
+    this.welcomeMessage = appArtemService.welcomeMessage;
   }
 }
