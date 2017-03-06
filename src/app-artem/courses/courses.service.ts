@@ -9,7 +9,8 @@ export class CoursesService {
     console.log('CoursesService: constructor() this.coursesList', this.coursesList);
   }
 
-  public getCourses() {
+  // TODO: shouldn't this be inferred from the -- private coursesList: CourseModel[] --- ???
+  public getCourses(): Promise<CourseModel[]> {
     // imitate async
     return new Promise((resolve, reject) => {
       setTimeout(() => resolve(this.coursesList), 1000);
