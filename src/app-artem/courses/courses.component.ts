@@ -7,7 +7,7 @@ import { CoursesService } from './courses.service';
   templateUrl: 'courses.component.html'
 })
 export class CoursesComponent {
-  public courses: CourseModel[];  // TODO: not working yet?
+  public courses: CourseModel[];
 
   constructor(
     private coursesService: CoursesService

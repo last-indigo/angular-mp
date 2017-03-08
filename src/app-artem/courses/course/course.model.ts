@@ -1,7 +1,7 @@
 export interface CourseModel {
-  dinosaurId: number;
-  titleBlah: string;
-  durationBlah: string;
-  descriptionBlah: string;
-  publishedDateBlah: Date;
+  id: number;
+  title: string;
+  duration: string;
+  description: string;
+  publishedDate: Date;
 }
