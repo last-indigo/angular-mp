@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CoursesService } from './courses.service';
 
 import { CoursesComponent } from './courses.component';
+import { CoursesToolboxComponent } from './courses-toolbox';
 import { CourseComponent } from './course/course.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CourseComponent } from './course/course.component';
   ],
   declarations: [
     CoursesComponent,
+    CoursesToolboxComponent,
     CourseComponent
   ],
   providers: [
@@ -31,6 +33,7 @@ import { CourseComponent } from './course/course.component';
    */
   exports: [
     CoursesComponent,
+    CoursesToolboxComponent,
     CourseComponent
   ]
 })

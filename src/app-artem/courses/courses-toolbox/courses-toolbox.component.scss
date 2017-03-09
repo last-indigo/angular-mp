@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.courses-toolbox {
+  &__search-group {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
