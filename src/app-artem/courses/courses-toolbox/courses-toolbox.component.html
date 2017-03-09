@@ -1,7 +1,12 @@
-<div class="courses-toolbox__search-group">
+<form class="courses-toolbox__search-group"
+      (submit)="find()">
   <input type="text"
+         name="search-query"
          [(ngModel)]="searchQuery"
          placeholder="enter course...">
-  <button (click)="find()">Find</button>
-</div>
+  <button type="submit">
+    Find
+  </button>
+</form>
 <button>Add course</button>
+

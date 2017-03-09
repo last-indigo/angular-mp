@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
  * otherwise, *ngFor is not working
  */
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
 
 import { CoursesService } from './courses.service';
 
@@ -13,7 +14,8 @@ import { CourseComponent } from './course/course.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   declarations: [
     CoursesComponent,
