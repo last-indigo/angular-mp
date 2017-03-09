@@ -1,19 +1,27 @@
-<article>
-  <h2>
-    <a href="">
-      Video Course: {{courseInput.id}}
-    </a>
-  </h2>
-  <p>
-    <strong>Duration:</strong>
-    {{courseInput.duration}}
-  </p>
-  <p>
-    <strong>Date:</strong>
-    {{courseInput.publishedDate}}
-  </p>
-  <p>
-    <strong>Title:</strong>
-    {{courseInput.title}}
-  </p>
+<article class="course-video">
+  <div class="course-video__information">
+    <header class="course-video__header">
+      <h2 class="course-video__information__title">
+        <a href="">
+          {{courseInput.title}} | ID: {{courseInput.id}}
+        </a>
+      </h2>
+      <p class="course-video__information__duration">
+        {{courseInput.duration}}
+      </p>
+      <p class="course-video__information__date-published">
+        {{courseInput.publishedDate | date}}
+      </p>
+    </header>
+    <main>
+      <p class="course-video__information__description">
+        {{courseInput.description}}
+      </p>
+    </main>
+  </div>
+
+  <div class="course-video__controls">
+    <button class="course-video__controls__edit-button">Edit course</button>
+    <button class="course-video__controls__delete-button">Delete</button>
+  </div>
 </article>

@@ -4,6 +4,7 @@ import { CoursesService } from './courses.service';
 
 @Component({
   selector: 'app-courses',
+  styleUrls: ['courses.component.scss'],
   templateUrl: 'courses.component.html'
 })
 export class CoursesComponent {

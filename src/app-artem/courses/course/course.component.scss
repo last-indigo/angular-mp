@@ -1,0 +1,72 @@
+$padding-step: 1em;
+article {
+  border: 1px solid black;
+}
+:host {
+  display: block;
+  margin-bottom: 1em;
+}
+// TODO: adjacent selector is not working, how to do smth like this?
+//:host+:host{
+//  margin-top: 2em;
+//}
+
+.course-video {
+  display: flex;
+  padding: $padding-step;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__information {
+    max-width: 80%;
+    margin-right: $padding-step;
+
+    &__title {
+      //display: inline-block;
+      //display: inline-flex;
+
+      &:hover {
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &__duration {
+      //display: inline-block;
+      //display: inline-flex;
+    }
+
+    &__date-published {
+      //display: inline-block;
+      //display: inline-flex;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 20;
+    text-align: center;
+
+    &__edit-button,
+    &__delete-button {
+      display: block;
+      width: 100%;
+      min-height: 2.5em;
+      line-height: 1.3em;
+      cursor: pointer;
+      margin-bottom: 1em;
+    }
+
+  }
+
+}

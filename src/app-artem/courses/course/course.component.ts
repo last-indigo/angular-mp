@@ -3,6 +3,7 @@ import { CourseModel } from './course.model';
 
 @Component({
   selector: 'course',
+  styleUrls: ['course.component.scss'],
   templateUrl: 'course.component.html'
 })
 
