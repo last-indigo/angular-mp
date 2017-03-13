@@ -18,4 +18,8 @@ export class CoursesComponent {
         this.courses = res;
       });
   }
+
+  public handleRemoveCourseParent($event) {
+    console.log('handleRemoveCourseParent caught in CoursesComponent', $event);
+  }
 }

@@ -2,6 +2,8 @@
   this is courses.component.
   <courses-toolbox></courses-toolbox>
   <course *ngFor="let course of courses"
+          (onRemove)="handleRemoveCourseParent($event)"
           [courseInput]="course">
+    <!-- NOTE: $event! -->
   </course>
 </section>

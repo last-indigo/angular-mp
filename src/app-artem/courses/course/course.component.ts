@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CourseModel } from './course.model';
 
 @Component({
@@ -11,4 +11,14 @@ export class CourseComponent {
   // @Input private courseObj: any;
   // TODO: remember to put parens!!!
   @Input() public courseInput: CourseModel;
+  @Output() public onRemove: EventEmitter<any> = new EventEmitter();
+
+  public deleteCourse() {
+    this.onRemove.emit([
+      this.courseInput.id,
+      'HI! from CourseComponent',
+      'The model was:',
+      this.courseInput
+    ]);
+  }
 }

@@ -21,7 +21,11 @@
   </div>
 
   <div class="course-video__controls">
-    <button class="course-video__controls__edit-button">Edit course</button>
-    <button class="course-video__controls__delete-button">Delete</button>
+    <button class="course-video__controls__edit-button">
+      Edit course
+    </button>
+    <button class="course-video__controls__delete-button" (click)="deleteCourse($event)">
+      Delete
+    </button>
   </div>
 </article>
