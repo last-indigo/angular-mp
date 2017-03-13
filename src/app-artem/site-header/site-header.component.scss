@@ -1,8 +1,23 @@
-header {
+/* site-header.component.scss */
+:host {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
   min-height: 3em;
   border: 1px double black;
+
+  .left-section {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .right-section {
+    display: flex;
+    flex-grow: 5;
+    //align-items: right;
+    //text-align: right;
+    justify-content: flex-end;
+  }
 }
