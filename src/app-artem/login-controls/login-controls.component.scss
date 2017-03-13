@@ -1,0 +1,15 @@
+/* login-controls.component.scss */
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .logoff-link {
+    color: #28accc;
+    font-weight: bold;
+  }
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
