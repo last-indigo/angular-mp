@@ -10,6 +10,7 @@ import { AppArtemService } from './app-artem.service';
 import { CoursesModule } from './courses';
 
 import { SiteHeaderModule } from './site-header';
+import { SiteFooterModule } from './site-footer';
 
 const DECLARATIONS = [
   AppArtemComponent
@@ -26,6 +27,7 @@ const IMPORTS = [
   // SharedKindaModule,
 
   CoursesModule,
+  SiteFooterModule,
   SiteHeaderModule
 ];
 
