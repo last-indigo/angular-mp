@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// todo: cannot be used globally?
+// import { SharedKindaModule } from './shared-kinda.module';
+
 import { AppArtemComponent } from './app-artem.component';
 import { AppArtemService } from './app-artem.service';
 
@@ -18,6 +21,9 @@ const PROVIDERS = [
 
 const IMPORTS = [
   BrowserModule,
+
+  // todo: cannot be used globally?
+  // SharedKindaModule,
 
   CoursesModule,
   SiteHeaderModule

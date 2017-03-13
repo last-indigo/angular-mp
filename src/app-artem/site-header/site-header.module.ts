@@ -1,9 +1,16 @@
+/* site-header.module.ts */
 import { NgModule } from '@angular/core';
 
+// shared -- todo: is bad?
+import { SharedKindaModule } from '../shared-dont-like.module';
+
+// specific
 import { SiteHeaderComponent } from './site-header.component';
 
 @NgModule({
-  imports: [],
+  imports: [
+    SharedKindaModule
+  ],
   declarations: [SiteHeaderComponent],
   providers: [],
 
