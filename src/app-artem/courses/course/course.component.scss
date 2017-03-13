@@ -59,12 +59,15 @@ article {
 
     &__edit-button,
     &__delete-button {
+      &:first-child {
+        margin-top: 0;
+      }
       display: block;
       width: 100%;
       min-height: 2.5em;
       line-height: 1.3em;
       cursor: pointer;
-      margin-bottom: 1em;
+      margin-top: 1em;
     }
 
   }
