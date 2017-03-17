@@ -56,6 +56,20 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     ;
   }
 
+  public handleAddCourseParent($event) {
+    console.log('handleAddCourseParent caught in CoursesComponent', $event);
+
+    this.coursesService.createCourse($event.course)
+      .then((response) => {
+        console.log('handleAddCourseParent: course created');
+        this.courses = [response, ...this.courses];
+      })
+      .catch(() => {
+        console.log('handleAddCourseParent: error creating course');
+      })
+    ;
+  }
+
   public ngOnInit(): void {
     console.log('--- ngHooks in CoursesComponent: --- ngOnInit', arguments);
 
