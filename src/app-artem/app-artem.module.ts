@@ -10,13 +10,12 @@ import { BrowserModule } from '@angular/platform-browser';
  */
 import { FormsModule }   from '@angular/forms';
 
-// todo: cannot be used globally?
-// import { SharedKindaModule } from './shared-kinda.module';
+import { SharedKindaModule } from './shared-dont-like.module';
 
 import { AppArtemComponent } from './app-artem.component';
 import { AppArtemService } from './app-artem.service';
 
-import { SiteHeaderModule } from './site-header';
+import { SiteHeaderComponent } from './site-header';
 import { SiteFooterComponent } from './site-footer';
 
 import {
@@ -31,6 +30,7 @@ const DECLARATIONS = [
   CoursesComponent,
   CoursesToolboxComponent,
   CourseComponent,
+  SiteHeaderComponent,
   SiteFooterComponent,
   AppArtemComponent
 ];
@@ -44,10 +44,10 @@ const IMPORTS = [
   BrowserModule,
   FormsModule,
 
-  // todo: cannot be used globally?
-  // SharedKindaModule,
+  // Q: cannot this be used globally?
+  // A: it can, but should be re-exported for other modules to consume
+  SharedKindaModule,
 
-  SiteHeaderModule
 ];
 
 @NgModule({

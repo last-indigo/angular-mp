@@ -1,1 +1,1 @@
-export * from './site-header.module';
+export { SiteHeaderComponent } from './site-header.component';
