@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,8 @@ export class AuthService {
   }
 
   // Login (stores fake user info and token to local storage)
-  public login() {
+  public login(credentials) {
+    this.fakeUserInfo = _.extend({}, this.fakeUserInfo, credentials);
     localStorage.setItem(this.authLSKey, JSON.stringify(this.getUserInfo()) );
     console.log(`hello, ${this.getUserInfo().name}! (authService#login)`);
   }
@@ -36,9 +38,11 @@ export class AuthService {
 
   // GetUserInfo (returns user login)
   public getUserInfo() {
-    return {
-      name: '%mock_username%',
-      token: 'SERCRET_KEY_MOCK'
-    };
+    return this.fakeUserInfo;
   }
+
+  private fakeUserInfo: any = {
+    name: '%mock_username%',
+    token: 'SERCRET_KEY_MOCK'
+  };
 }

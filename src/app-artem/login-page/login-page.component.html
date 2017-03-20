@@ -1,8 +1,14 @@
 <!-- login-page.component.html -->
 <form action=""
       (submit)="doLogin()">
-  <input type="text" placeholder="Name...">
-  <input type="password" placeholder="Password...">
+  <input type="text"
+         name="usernameInput"
+         [(ngModel)]="userInfoInput.name"
+         placeholder="Name...">
+  <input type="password"
+         name="passwordInput"
+         [(ngModel)]="userInfoInput.password"
+         placeholder="Password...">
   <button>
     Click me to FakeLogin
   </button>

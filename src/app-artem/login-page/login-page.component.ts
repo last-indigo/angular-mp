@@ -13,7 +13,10 @@ export class LoginPageComponent {
     this.authService = authService;
   }
 
+  public userInfoInput: any = {};
+
   public doLogin() {
-    this.authService.login();
+    console.log('this.userInfoInput', this.userInfoInput);
+    this.authService.login(this.userInfoInput);
   }
 }
