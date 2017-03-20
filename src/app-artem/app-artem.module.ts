@@ -10,8 +10,6 @@ import { BrowserModule } from '@angular/platform-browser';
  */
 import { FormsModule }   from '@angular/forms';
 
-import { SharedKindaModule } from './shared-dont-like.module';
-
 import { AppArtemComponent } from './app-artem.component';
 import { AppArtemService } from './app-artem.service';
 
@@ -26,12 +24,20 @@ import {
   CoursesService
 } from './courses';
 
+import { BreadcrumbsComponent } from './breadcrumbs';
+import { LoginControlsComponent } from './login-controls';
+
 const DECLARATIONS = [
   CoursesComponent,
   CoursesToolboxComponent,
   CourseComponent,
+
   SiteHeaderComponent,
   SiteFooterComponent,
+
+  BreadcrumbsComponent,
+  LoginControlsComponent,
+
   AppArtemComponent
 ];
 
@@ -43,11 +49,6 @@ const PROVIDERS = [
 const IMPORTS = [
   BrowserModule,
   FormsModule,
-
-  // Q: cannot this be used globally?
-  // A: it can, but should be re-exported for other modules to consume
-  SharedKindaModule,
-
 ];
 
 @NgModule({
