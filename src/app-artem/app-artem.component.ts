@@ -7,25 +7,14 @@ import { AuthService } from './auth';
   styleUrls: ['app-artem.component.scss'],
   templateUrl: 'app-artem.component.html'
 })
-export class AppArtemComponent implements OnInit {
+export class AppArtemComponent {
   public welcomeMessage: string;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private appArtemService: AppArtemService) {
     // NOTE: gets instantiated, only when required as dependency
     this.authService = authService;
 
     this.welcomeMessage = appArtemService.welcomeMessage;
-  }
-
-  private ngOnInit(): void {
-    if (!this.authService.isAuthenticated()) {
-      const allowed = confirm(`wanna login? (AppArtemComponent#ngOnInit`);
-      if (!allowed) {
-        throw new Error('Artem, not allowed to login: should stop render');
-        return;  // or redirect
-      }
-      this.authService.login();
-    }
   }
 }

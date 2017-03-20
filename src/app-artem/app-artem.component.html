@@ -1,6 +1,10 @@
 <site-header></site-header>
 
+<login-page *ngIf="!authService.isAuthenticated()">
+</login-page>
+
 <!-- TODO: this will be routed: no need to create separate component -->
-<app-courses></app-courses>
+<app-courses *ngIf="authService.isAuthenticated()">
+</app-courses>
 
 <site-footer></site-footer>

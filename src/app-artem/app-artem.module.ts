@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
 import { AppArtemComponent } from './app-artem.component';
+import { LoginPageComponent } from './login-page';
 import { AppArtemService } from './app-artem.service';
 import { AuthService } from './auth';
 
@@ -32,6 +33,8 @@ import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 const DECLARATIONS = [
+  LoginPageComponent,
+
   CoursesComponent,
   CoursesToolboxComponent,
   CourseComponent,

@@ -19,13 +19,13 @@ export class AuthService {
   // Login (stores fake user info and token to local storage)
   public login() {
     localStorage.setItem(this.authLSKey, JSON.stringify(this.getUserInfo()) );
-    alert(`hello, ${this.getUserInfo().name}! (authService#login)`);
+    console.log(`hello, ${this.getUserInfo().name}! (authService#login)`);
   }
 
   // Logout (wipes fake user info and token from local storage)
   public logout() {
     localStorage.removeItem(this.authLSKey);
-    alert('authService#logout');
+    console.log('authService#logout');
   }
 
   // IsAuthenticated (boolean)
