@@ -27,6 +27,9 @@ import {
 import { BreadcrumbsComponent } from './breadcrumbs';
 import { LoginControlsComponent } from './login-controls';
 
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
 const DECLARATIONS = [
   CoursesComponent,
   CoursesToolboxComponent,
@@ -49,6 +52,8 @@ const PROVIDERS = [
 const IMPORTS = [
   BrowserModule,
   FormsModule,
+  ModalModule.forRoot(),
+  BootstrapModalModule,
 ];
 
 @NgModule({

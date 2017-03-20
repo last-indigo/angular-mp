@@ -14,6 +14,11 @@ import {
 import { CourseModel } from './course/course.model';
 import { CoursesService } from './courses.service';
 
+// TODO: figure this out!
+import { ViewContainerRef } from '@angular/core';
+import { Overlay } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+
 @Component({
   selector: 'app-courses',
   styleUrls: ['courses.component.scss'],
@@ -25,22 +30,61 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
   public courses: CourseModel[];
 
   constructor(
+    // TODO: figure this out!
+    overlay: Overlay,
+    vcRef: ViewContainerRef,
+    public modal: Modal,
+
     private coursesService: CoursesService
   ) {
     this.coursesService = coursesService;
+
+    // TODO: figure this out!
+    overlay.defaultViewContainer = vcRef;
+  }
+
+  // TODO: figure this out!
+  onRemoveModalShow() {
+    const modal =
+      this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('Delete confirmation')
+        .body(`
+            <h4>Operation cannot be undone!</h4>
+            <p>Please press OK button if you are sure</p>
+        `)
+        .open();
+
+    console.log(modal);
+
+    return modal;
   }
 
   public handleRemoveCourseParent($event) {
     console.log('handleRemoveCourseParent caught in CoursesComponent', $event);
 
-    this.coursesService.removeCourseById($event[0])
+    this.onRemoveModalShow()
+      .then((modal) => {
+        console.log("onRemoveModalShow.then modal:", modal);
+        return modal.result;
+      })
+      .catch((dismissal) => {
+        // NOTE: otherwise, .then's get executed
+        throw 'modal has been dismissed!';
+      })
+      .then((confirmation) => {
+        return this.coursesService.removeCourseById($event[0])
+      })
       .then((response) => {
+        console.log("from this.coursesService.removeCourseById:", response);
         this.courses = response;
       })
       .catch((reason) => {
         console.log('handleRemoveCourseParent failed with reason:', reason);
       })
     ;
+
   }
 
   public handleEditCourseParent($event) {
