@@ -17,7 +17,7 @@ import { AppArtemComponent } from './app-artem.component';
 import { AppArtemService } from './app-artem.service';
 
 import { SiteHeaderModule } from './site-header';
-import { SiteFooterModule } from './site-footer';
+import { SiteFooterComponent } from './site-footer';
 
 import {
   CoursesComponent,
@@ -31,6 +31,7 @@ const DECLARATIONS = [
   CoursesComponent,
   CoursesToolboxComponent,
   CourseComponent,
+  SiteFooterComponent,
   AppArtemComponent
 ];
 
@@ -46,7 +47,6 @@ const IMPORTS = [
   // todo: cannot be used globally?
   // SharedKindaModule,
 
-  SiteFooterModule,
   SiteHeaderModule
 ];
 

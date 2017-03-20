@@ -1,1 +1,1 @@
-export * from './site-footer.module';
+export { SiteFooterComponent } from './site-footer.component';
