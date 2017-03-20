@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class LoginControlsComponent {
   public username: string;
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     this.authService = authService;
     console.log('LoginControlsComponent constructor');
   }

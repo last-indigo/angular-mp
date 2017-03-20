@@ -39,7 +39,6 @@ export class AuthService {
     return {
       name: 'username',
       token: 'SERCRET_KEY_MOCK'
-    }
+    };
   }
 }
-

@@ -44,7 +44,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   // TODO: figure this out!
-  onRemoveModalShow() {
+  public onRemoveModalShow() {
     const modal =
       this.modal.alert()
         .size('lg')
@@ -66,7 +66,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
 
     this.onRemoveModalShow()
       .then((modal) => {
-        console.log("onRemoveModalShow.then modal:", modal);
+        console.log(`onRemoveModalShow.then modal:`, modal);
         return modal.result;
       })
       .catch((dismissal) => {
@@ -74,10 +74,10 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
         throw 'modal has been dismissed!';
       })
       .then((confirmation) => {
-        return this.coursesService.removeCourseById($event[0])
+        return this.coursesService.removeCourseById($event[0]);
       })
       .then((response) => {
-        console.log("from this.coursesService.removeCourseById:", response);
+        console.log(`from this.coursesService.removeCourseById:`, response);
         this.courses = response;
       })
       .catch((reason) => {

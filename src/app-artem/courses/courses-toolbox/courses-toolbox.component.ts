@@ -33,7 +33,7 @@ export class CoursesToolboxComponent {
 
     this.onAddCourse.emit({
       course: newCourseModel,
-      $event: $event
+      $event
     });
   }
 }
