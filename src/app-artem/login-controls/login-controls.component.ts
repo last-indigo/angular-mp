@@ -1,5 +1,6 @@
 /* login-controls.component */
 import { Component } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'login-controls',
@@ -9,7 +10,12 @@ import { Component } from '@angular/core';
 export class LoginControlsComponent {
   public username: string;
 
-  constructor() {
+  constructor(private authService: AuthService) {
+    this.authService = authService;
     console.log('LoginControlsComponent constructor');
+  }
+
+  public doLogout() {
+    this.authService.logout();
   }
 }

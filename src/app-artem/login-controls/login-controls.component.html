@@ -1,9 +1,13 @@
 <!--login-controls.component.html-->
-<h3>
-  %username%: {{username}}
-</h3>
+<div *ngIf="this.authService.isAuthenticated()"
+     class="login-controls-root">
+  <h3>
+    %username%: {{username}}
+  </h3>
 
-<a href="#logout"
-   class="logoff-link">
-  logoff
-</a>
+  <a href=""
+     (click)="doLogout()"
+     class="logoff-link">
+    logoff
+  </a>
+</div>

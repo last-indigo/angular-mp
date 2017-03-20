@@ -12,6 +12,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppArtemComponent } from './app-artem.component';
 import { AppArtemService } from './app-artem.service';
+import { AuthService } from './auth';
 
 import { SiteHeaderComponent } from './site-header';
 import { SiteFooterComponent } from './site-footer';
@@ -45,6 +46,7 @@ const DECLARATIONS = [
 ];
 
 const PROVIDERS = [
+  AuthService,
   CoursesService,
   AppArtemService
 ];
