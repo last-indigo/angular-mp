@@ -11,7 +11,6 @@ export class LoginControlsComponent {
   public username: string;
 
   constructor(public authService: AuthService) {
-    this.authService = authService;
     console.log('LoginControlsComponent constructor');
   }
 

@@ -1,8 +1,8 @@
 <!--login-controls.component.html-->
-<div *ngIf="this.authService.isAuthenticated()"
+<div *ngIf="authService.isAuthenticated()"
      class="login-controls-root">
   <h3>
-    %username%: {{username}}
+    {{authService.getUserInfo().name}}
   </h3>
 
   <span

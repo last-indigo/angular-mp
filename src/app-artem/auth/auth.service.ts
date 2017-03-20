@@ -37,7 +37,7 @@ export class AuthService {
   // GetUserInfo (returns user login)
   public getUserInfo() {
     return {
-      name: 'username',
+      name: '%mock_username%',
       token: 'SERCRET_KEY_MOCK'
     };
   }

@@ -4,10 +4,10 @@
     <img src="//placehold.it/200x150/" alt="Home">
   </a>
   <span>Logo</span>
-
-  <breadcrumbs></breadcrumbs>
 </div>
 
-<div class="right-section">
+<div *ngIf="authService.isAuthenticated()"
+     class="right-section">
+  <breadcrumbs></breadcrumbs>
   <login-controls></login-controls>
 </div>
