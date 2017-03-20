@@ -1,13 +1,15 @@
-<!--site-header.component.html-->
-<div class="left-section">
-  <a href="">
-    <img src="//placehold.it/200x150/" alt="Home">
-  </a>
-  <span>Logo</span>
-</div>
+<div class="root-class">
+  <!--site-header.component.html-->
+  <div class="left-section">
+    <a href="">
+      <img src="//placehold.it/200x150/" alt="Home">
+    </a>
+    <span>Logo</span>
+  </div>
 
-<div *ngIf="authService.isAuthenticated()"
-     class="right-section">
-  <breadcrumbs></breadcrumbs>
-  <login-controls></login-controls>
+  <div *ngIf="authService.isAuthenticated()"
+       class="right-section">
+    <breadcrumbs></breadcrumbs>
+    <login-controls></login-controls>
+  </div>
 </div>

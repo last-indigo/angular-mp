@@ -1,10 +1,14 @@
 /* site-header.component.scss */
-:host {
+// WTF? host always has zero height?
+//:host {
+//  min-height: 3em;
+//}
+
+.root-class {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  min-height: 3em;
   border: 1px double black;
 
   .left-section {
