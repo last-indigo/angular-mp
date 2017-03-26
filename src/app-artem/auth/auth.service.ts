@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -11,10 +12,20 @@ export class AuthService {
    Implement fake action on logout (wipe user info, console.log etc...)
    */
 
-  private fakeUserInfo: any = {
-    name: '%mock_username%',
-    token: 'SERCRET_KEY_MOCK'
-  };
+  private fakeUserInfo: Observable<any> = new Observable(
+    (observer) => {
+      setTimeout(() => {
+        observer.next({
+          name: '%mock_username%',
+          token: 'SERCRET_KEY_MOCK'
+        });
+      }, 333);
+
+      setTimeout(() => {
+        observer.complete();
+      }, 777);
+    }
+  );
 
   private authLSKey: string = 'a2-Auth';
 
@@ -24,9 +35,14 @@ export class AuthService {
 
   // Login (stores fake user info and token to local storage)
   public login(credentials) {
-    this.fakeUserInfo = _.extend({}, this.fakeUserInfo, credentials);
-    localStorage.setItem(this.authLSKey, JSON.stringify(this.getUserInfo()) );
-    console.log(`hello, ${this.getUserInfo().name}! (authService#login)`);
+    this.fakeUserInfo.subscribe(
+      (response) => {
+        // TODO: how to pass credentials from view to be consumed by observable?
+        // this.fakeUserInfo = _.extend({}, this.fakeUserInfo, credentials);
+        localStorage.setItem(this.authLSKey, JSON.stringify(response));
+        console.log(`hello, ${response.name}! (authService#login)`);
+      }
+    );
   }
 
   // Logout (wipes fake user info and token from local storage)
@@ -42,7 +58,7 @@ export class AuthService {
   }
 
   // GetUserInfo (returns user login)
-  public getUserInfo() {
+  public getUserInfo(): Observable<any> {
     return this.fakeUserInfo;
   }
 }
