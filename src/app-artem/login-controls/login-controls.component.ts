@@ -1,8 +1,13 @@
 /* login-controls.component */
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   selector: 'login-controls',
   templateUrl: './login-controls.component.html',
   styleUrls: ['./login-controls.component.scss']

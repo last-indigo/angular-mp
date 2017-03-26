@@ -1,9 +1,16 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import * as _ from 'lodash';
 
 import { CourseModel } from '../course/course.model';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   selector: 'courses-toolbox',
   styleUrls: ['courses-toolbox.component.scss'],
   templateUrl: 'courses-toolbox.component.html'

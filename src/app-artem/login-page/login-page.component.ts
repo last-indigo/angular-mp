@@ -1,8 +1,13 @@
 // login-page.component.ts
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   selector: 'login-page',
   templateUrl: 'login-page.component.html',
   styleUrls: ['login-page.component.scss']

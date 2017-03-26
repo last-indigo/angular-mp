@@ -1,5 +1,10 @@
 // profiler-change-detection.component.ts
-import { Component, NgZone, OnInit } from '@angular/core';
+import {
+  Component,
+  NgZone,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 /**
  * You should compare default strategy vs OnPush by spent time.
@@ -17,6 +22,8 @@ import { Component, NgZone, OnInit } from '@angular/core';
  * Please follow the link from previous answer.)
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   selector: 'profiler-change-detection',
   template: `it's me, profiler-change-detection @Component`
 })
