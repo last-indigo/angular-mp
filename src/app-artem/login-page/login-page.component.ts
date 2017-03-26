@@ -8,12 +8,12 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['login-page.component.scss']
 })
 export class LoginPageComponent {
+  public userInfoInput: any = {};
+
   constructor(public authService: AuthService) {
     // NOTE: gets instantiated, only when required as dependency
     this.authService = authService;
   }
-
-  public userInfoInput: any = {};
 
   public doLogin() {
     console.log('this.userInfoInput', this.userInfoInput);

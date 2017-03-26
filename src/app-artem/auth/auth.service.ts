@@ -11,6 +11,11 @@ export class AuthService {
    Implement fake action on logout (wipe user info, console.log etc...)
    */
 
+  private fakeUserInfo: any = {
+    name: '%mock_username%',
+    token: 'SERCRET_KEY_MOCK'
+  };
+
   private authLSKey: string = 'a2-Auth';
 
   constructor() {
@@ -40,9 +45,4 @@ export class AuthService {
   public getUserInfo() {
     return this.fakeUserInfo;
   }
-
-  private fakeUserInfo: any = {
-    name: '%mock_username%',
-    token: 'SERCRET_KEY_MOCK'
-  };
 }
