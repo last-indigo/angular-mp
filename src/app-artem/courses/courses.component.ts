@@ -9,6 +9,8 @@ import {
   AfterViewChecked,
   AfterViewInit,
 
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
   SimpleChanges
 } from '@angular/core';
 import { CourseModel } from './course/course.model';
@@ -20,6 +22,9 @@ import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
+  // changing just this breaks page - no changes would be detected, the view will not be updated
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   selector: 'app-courses',
   styleUrls: ['courses.component.scss'],
   templateUrl: 'courses.component.html'
@@ -30,6 +35,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
   public courses: CourseModel[];
 
   constructor(
+    private ref: ChangeDetectorRef,
     // TODO: figure this out!
     overlay: Overlay,
     vcRef: ViewContainerRef,
@@ -78,6 +84,9 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
       })
       .then((response) => {
         console.log(`from this.coursesService.removeCourseById:`, response);
+
+        // the following is required, otherwise the view will not be updated
+        this.ref.markForCheck();
         this.courses = response;
       })
       .catch((reason) => {
@@ -119,6 +128,9 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
 
     this.coursesService.getCourses()
       .then((response) => {
+        // the following is required, otherwise the view will not be updated
+        this.ref.markForCheck();
+
         this.courses = response;
       });
   }
