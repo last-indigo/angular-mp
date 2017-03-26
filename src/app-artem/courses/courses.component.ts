@@ -115,6 +115,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     this.coursesService.createCourse($event.course)
       .then((response) => {
         console.log('handleAddCourseParent: course created');
+        this.ref.markForCheck();
         this.courses = [response, ...this.courses];
       })
       .catch(() => {
