@@ -1,5 +1,6 @@
 import * as coursesMockData from './courses.api-mock.json';
 import { CourseModel } from './course/course.model';
+import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 export class CoursesService {
@@ -11,10 +12,20 @@ export class CoursesService {
   }
 
   // TODO: shouldn't this be inferred from the -- private coursesList: CourseModel[] --- ???
-  public getCourses(): Promise<CourseModel[]> {
+  public getCourses(): Observable<CourseModel[]> {
     // imitate async
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(this.coursesList), 1000);
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(this.coursesList);
+      }, 333);
+
+      // setTimeout(() => {
+      //   observer.next(43);
+      // }, 2000);
+
+      setTimeout(() => {
+        observer.complete();
+      }, 777);
     });
   }
 
@@ -22,50 +33,78 @@ export class CoursesService {
    * From task notes: "Do not use http module to solve a task."
    */
 
-  public createCourse(rawModel: CourseModel): Promise<CourseModel> {
-    return new Promise((resolve, reject) => {
-      // $http.post()
+  public createCourse(rawModel: CourseModel): Observable<CourseModel> {
+    // $http.post()
+    this.coursesList = [rawModel, ...this.coursesList];
+    console.warn('createCourse success');
+    // return Observable.from(rawModel);
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(rawModel);
+      }, 333);
+
+      // setTimeout(() => {
+      //   observer.next(43);
+      // }, 2000);
 
       setTimeout(() => {
-        console.warn('createCourse success');
-        this.coursesList = [rawModel, ...this.coursesList];
-        resolve(rawModel);
-      }, 400);
+        observer.complete();
+      }, 777);
     });
   }
 
-  public updateCourseById(id: string, patch: any): Promise<CourseModel> {
-    return new Promise((resolve, reject) => {
-      // $http.patch()
+  // TODO: to return    : Observable<CourseModel>
+  public updateCourseById(id: string, patch: any) {
+    // $http.patch()
 
+    // return Observable.from(null);
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(null);
+      }, 333);
+
+      setTimeout(() => {
+        observer.complete();
+      }, 777);
     });
   }
 
-  public getCourseById(id: string): Promise<CourseModel> {
-    return new Promise((resolve, reject) => {
-      // $http.get()
+  public getCourseById(id: string): Observable<CourseModel> {
+    // $http.get()
+    const result = _.find(this.coursesList, {id});
+    // return Observable.from(result);
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(result);
+      }, 333);
+
+      // setTimeout(() => {
+      //   observer.next(43);
+      // }, 2000);
 
       setTimeout(() => {
-        const result = _.find(this.coursesList, {id});
-        if (result) {
-          console.warn('getCourseById returned item');
-          resolve(result);
-        } else {
-          reject('not found');
-        }
-      }, 400);
+        observer.complete();
+      }, 777);
     });
   }
 
-  public removeCourseById(id: string): Promise<CourseModel[]> {
-    return new Promise((resolve, reject) => {
-      // $http.get()
+  public removeCourseById(id: string): Observable<CourseModel[]> {
+    // $http.get()
+    console.warn('removeCourseById acknowledged delete');
+    this.coursesList = _.reject(this.coursesList, {id});
+    // return Observable.from(this.coursesList);
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(this.coursesList);
+      }, 333);
+
+      // setTimeout(() => {
+      //   observer.next(43);
+      // }, 2000);
 
       setTimeout(() => {
-        console.warn('removeCourseById acknowledged delete');
-        this.coursesList = _.reject(this.coursesList, {id});
-        resolve(this.coursesList);
-      }, 400);
+        observer.complete();
+      }, 777);
     });
   }
 }

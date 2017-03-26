@@ -82,12 +82,22 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
       .then((confirmation) => {
         return this.coursesService.removeCourseById($event[0]);
       })
-      .then((response) => {
-        console.log(`from this.coursesService.removeCourseById:`, response);
+      .then((observableInstance) => {
+        console.log(`from this.coursesService.removeCourseById:`, observableInstance);
 
-        // the following is required, otherwise the view will not be updated
-        this.ref.markForCheck();
-        this.courses = response;
+        observableInstance.subscribe(
+          (response) => {
+            // the following is required, otherwise the view will not be updated
+            this.ref.markForCheck();
+            this.courses = response;
+          },
+          (error) => {
+            console.log('removeCourseById| observable error:', error);
+          },
+          () => {
+            console.log('removeCourseById| observable final');
+          }
+        );
       })
       .catch((reason) => {
         console.log('handleRemoveCourseParent failed with reason:', reason);
@@ -100,12 +110,17 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     console.log('handleEditCourseParent caught in CoursesComponent', $event);
 
     this.coursesService.getCourseById($event[0])
-      .then(() => {
-        console.log('handleEditCourseParent: success');
-      })
-      .catch(() => {
-        console.log('handleEditCourseParent: error');
-      })
+      .subscribe(
+        (response) => {
+          console.log('handleEditCourseParent: success | response:', response);
+        },
+        (error) => {
+          console.log('handleEditCourseParent| observable error:', error);
+        },
+        () => {
+          console.log('handleEditCourseParent| observable final');
+        }
+      )
     ;
   }
 
@@ -113,14 +128,19 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     console.log('handleAddCourseParent caught in CoursesComponent', $event);
 
     this.coursesService.createCourse($event.course)
-      .then((response) => {
-        console.log('handleAddCourseParent: course created');
-        this.ref.markForCheck();
-        this.courses = [response, ...this.courses];
-      })
-      .catch(() => {
-        console.log('handleAddCourseParent: error creating course');
-      })
+      .subscribe(
+        (response) => {
+          // the following is required, otherwise the view will not be updated
+          this.ref.markForCheck();
+          this.courses = [response, ...this.courses];
+        },
+        (error) => {
+          console.log('handleAddCourseParent| observable error:', error);
+        },
+        () => {
+          console.log('handleAddCourseParent| observable final');
+        }
+      )
     ;
   }
 
@@ -128,12 +148,22 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     console.log('--- ngHooks in CoursesComponent: --- ngOnInit', arguments);
 
     this.coursesService.getCourses()
-      .then((response) => {
-        // the following is required, otherwise the view will not be updated
-        this.ref.markForCheck();
+      .subscribe(
+        (response) => {
+          console.info('response', response);
+          // the following is required, otherwise the view will not be updated
+          this.ref.markForCheck();
 
-        this.courses = response;
-      });
+          this.courses = response;
+        },
+        (error) => {
+          console.log('handleAddCourseParent| observable error:', error);
+        },
+        () => {
+          console.log('handleAddCourseParent| observable final');
+        }
+      )
+    ;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
