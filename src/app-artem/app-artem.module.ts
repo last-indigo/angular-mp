@@ -28,6 +28,7 @@ import {
 
 import { BreadcrumbsComponent } from './breadcrumbs';
 import { LoginControlsComponent } from './login-controls';
+import { ProfilerChangeDetectionComponent } from './profiler-change-detection';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
@@ -44,6 +45,8 @@ const DECLARATIONS = [
 
   BreadcrumbsComponent,
   LoginControlsComponent,
+
+  ProfilerChangeDetectionComponent,
 
   AppArtemComponent
 ];
