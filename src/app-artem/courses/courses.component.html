@@ -12,4 +12,8 @@
     <!-- NOTE: this output belongs to TOOLBOX, not course-->
     <!--(onAddCourse)="handleAddCourseParent($event)"-->
   </course>
+  <p class="no-courses"
+     *ngIf="!courses || !courses.length">
+    No data. Feel free to add new course.
+  </p>
 </section>
