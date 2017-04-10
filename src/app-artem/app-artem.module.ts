@@ -29,7 +29,9 @@ import {
 import { BreadcrumbsComponent } from './breadcrumbs';
 import { LoginControlsComponent } from './login-controls';
 import { ProfilerChangeDetectionComponent } from './profiler-change-detection';
+
 import { IndicateLatestDirective } from './common/highlight.directive';
+import { ArtemDurationPipe } from './common/duration.pipe';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
@@ -50,6 +52,7 @@ const DECLARATIONS = [
   ProfilerChangeDetectionComponent,
 
   IndicateLatestDirective,
+  ArtemDurationPipe,
 
   AppArtemComponent
 ];

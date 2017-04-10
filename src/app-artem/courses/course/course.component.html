@@ -10,7 +10,7 @@
         </a>
       </h2>
       <p class="course-video__information__duration">
-        {{courseInput.duration}}
+        {{courseInput.duration | myArtemDuration}}
       </p>
       <i class="course-star"
          *ngIf="courseInput.topRated">*top</i>
