@@ -32,8 +32,9 @@ export class CoursesToolboxComponent {
     // TODO: bind view inputs to a model?
     const newCourseModel: CourseModel = {
       id: _.uniqueId('id_'),
+      topRated: false,
       title: 'mock title',
-      duration: Math.ceil(Math.random() * 100) + 'm',
+      duration: Math.ceil(Math.random() * 100),
       description: 'mock description',
       publishedDate: new Date()
     };

@@ -32,6 +32,7 @@ import { ProfilerChangeDetectionComponent } from './profiler-change-detection';
 
 import { IndicateLatestDirective } from './common/highlight.directive';
 import { ArtemDurationPipe } from './common/duration.pipe';
+import { MyOrderByPipe } from './courses/order-by.pipe';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
@@ -53,6 +54,7 @@ const DECLARATIONS = [
 
   IndicateLatestDirective,
   ArtemDurationPipe,
+  MyOrderByPipe,
 
   AppArtemComponent
 ];
