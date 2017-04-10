@@ -1,4 +1,7 @@
-<article class="course-video" indicate-latest [date]="courseInput.publishedDate">
+<article class="course-video"
+         indicate-latest
+         [date]="courseInput.publishedDate"
+         [ngClass]="{'top-rated': courseInput.topRated}">
   <div class="course-video__information">
     <header class="course-video__header">
       <h2 class="course-video__information__title">
@@ -9,6 +12,8 @@
       <p class="course-video__information__duration">
         {{courseInput.duration}}
       </p>
+      <i class="course-star"
+         *ngIf="courseInput.topRated">*top</i>
       <p class="course-video__information__date-published">
         {{courseInput.publishedDate | date}}
       </p>

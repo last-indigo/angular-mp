@@ -11,6 +11,16 @@ article {
 //  margin-top: 2em;
 //}
 
+.top-rated {
+  background-color: lightblue;
+}
+.course-star {
+  font-size: 1.2em;
+  font-weight: 900;
+  vertical-align: bottom;
+  text-align: left;
+}
+
 .course-video {
   display: flex;
   padding: $padding-step;

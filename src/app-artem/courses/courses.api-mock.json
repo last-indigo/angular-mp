@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "topRated": true,
     "title": "Mock title A",
     "duration": "1h 11m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
@@ -8,6 +9,7 @@
   },
   {
     "id": 2,
+    "topRated": false,
     "title": "Mock title B",
     "duration": "2h 22m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
@@ -15,6 +17,7 @@
   },
   {
     "id": 3,
+    "topRated": false,
     "title": "Mock title C",
     "duration": "3h 33m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
@@ -22,6 +25,7 @@
   },
   {
     "id": 4,
+    "topRated": true,
     "title": "Mock title D",
     "duration": "4h 44m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
