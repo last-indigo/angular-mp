@@ -4,27 +4,27 @@
     "title": "Mock title A",
     "duration": "1h 11m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
-    "publishedDate": "Sun, 05 Mar 2017 22:13:13 GMT"
+    "publishedDate": "Sun, 05 April 2017 22:13:13 GMT"
   },
   {
     "id": 2,
     "title": "Mock title B",
     "duration": "2h 22m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
-    "publishedDate": "Sun, 05 Mar 2017 22:13:36 GMT"
+    "publishedDate": "Sun, 26 Mar 2017 22:13:36 GMT"
   },
   {
     "id": 3,
     "title": "Mock title C",
     "duration": "3h 33m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
-    "publishedDate": "Sun, 05 Mar 2017 22:13:36 GMT"
+    "publishedDate": "Sun, 9 April 2017 22:13:36 GMT"
   },
   {
     "id": 4,
     "title": "Mock title D",
     "duration": "4h 44m",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate et facere incidunt, magnam minima nesciunt officiis omnis possimus repellat reprehenderit saepe sit soluta tempora unde! Nam officia sint soluta?",
-    "publishedDate": "Sun, 05 Mar 2017 22:13:36 GMT"
+    "publishedDate": "Sun, 05 Mar 2020 22:13:36 GMT"
   }
 ]
