@@ -1,10 +1,13 @@
 <section class="courses">
   this is courses.component.
-  <courses-toolbox (onAddCourse)="handleAddCourseParent($event)">
+  <courses-toolbox
+    (onFind)="handleFind($event)"
+    (onAddCourse)="handleAddCourseParent($event)">
 
   </courses-toolbox>
   <!-- https://angular.io/docs/ts/latest/guide/pipes.html#!#impure-flying-heroes-->
-  <course *ngFor="let course of (courses | myOrderBy)"
+  <!-- TODO: how to solve filtering problem with pipes, and not temp array with OR (||) ??? -->
+  <course *ngFor="let course of (filteredCourses || courses | myOrderBy)"
           (onRemove)="handleRemoveCourseParent($event)"
           (onEdit)="handleEditCourseParent($event)"
           [courseInput]="course">

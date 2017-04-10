@@ -33,6 +33,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
   AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit {
 
   public courses: CourseModel[];
+  private filteredCourses: CourseModel[];
 
   constructor(
     private ref: ChangeDetectorRef,
@@ -122,6 +123,24 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
         }
       )
     ;
+  }
+
+  /**
+   * Change find behavior
+   *
+   * Courses list is filtered by name when user enters some text
+   * in the field ‘search’ and presses the ‘Find’ button.
+   * (we need this task in order to try using pipes in component class not in the template)
+   */
+  public handleFind(queryString) {
+    if (!queryString) {
+      // keep original courses list intact
+      this.filteredCourses = [...this.courses];
+    }
+    this.filteredCourses = [...this.courses].filter((course) => {
+      // 'A'.includes('a') === false
+      return course.title.toLowerCase().includes(queryString.toLowerCase());
+    });
   }
 
   public handleAddCourseParent($event) {

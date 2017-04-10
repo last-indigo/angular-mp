@@ -16,6 +16,7 @@ import { CourseModel } from '../course/course.model';
   templateUrl: 'courses-toolbox.component.html'
 })
 export class CoursesToolboxComponent {
+  @Output() public onFind: EventEmitter<string> = new EventEmitter();
   @Output() public onAddCourse: EventEmitter<any> = new EventEmitter();
 
   public searchQuery: string;
@@ -25,7 +26,7 @@ export class CoursesToolboxComponent {
   }
 
   public find() {
-    console.log(this.searchQuery);
+    this.onFind.emit(this.searchQuery);
   }
 
   public addCourse($event) {
