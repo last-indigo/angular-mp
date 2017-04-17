@@ -12,20 +12,10 @@ export class AuthService {
    Implement fake action on logout (wipe user info, console.log etc...)
    */
 
-  private fakeUserInfo: Observable<any> = new Observable(
-    (observer) => {
-      setTimeout(() => {
-        observer.next({
-          name: '%mock_username%',
-          token: 'SERCRET_KEY_MOCK'
-        });
-      }, 333);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 777);
-    }
-  );
+  private fakeUserInfo: Observable<any> = Observable.of({
+    name: '%mock_username%',
+    token: 'SERCRET_KEY_MOCK'
+  });
 
   private authLSKey: string = 'a2-Auth';
 
