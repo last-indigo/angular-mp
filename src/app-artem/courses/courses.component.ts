@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import { CourseModel } from './course/course.model';
 import { CoursesService } from './courses.service';
+import { FreshnessDetectorService } from '../common/freshness-detector.service';
 
 // TODO: figure this out!
 import { ViewContainerRef } from '@angular/core';
@@ -34,6 +35,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
 
   public courses: CourseModel[];
   private filteredCourses: CourseModel[];
+  private freshnessCriterionDays: number = 14;
 
   constructor(
     private ref: ChangeDetectorRef,
@@ -42,6 +44,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     vcRef: ViewContainerRef,
     public modal: Modal,
 
+    private freshDetectService: FreshnessDetectorService,
     private coursesService: CoursesService
   ) {
     this.coursesService = coursesService;
@@ -167,6 +170,15 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
     console.log('--- ngHooks in CoursesComponent: --- ngOnInit', arguments);
 
     this.coursesService.getCourses()
+      .map(
+        (coursesList: CourseModel[]) => coursesList.filter(
+          // Filter out outdated courses (date < currentDate - 14days).
+          (course: CourseModel) => this.freshDetectService.verifyIfLatest(
+            course.publishedDate,
+            this.freshnessCriterionDays
+          )
+        )
+      )
       .subscribe(
         (response) => {
           console.info('response', response);
