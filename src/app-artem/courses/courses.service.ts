@@ -14,19 +14,7 @@ export class CoursesService {
   // TODO: shouldn't this be inferred from the -- private coursesList: CourseModel[] --- ???
   public getCourses(): Observable<CourseModel[]> {
     // imitate async
-    return new Observable((observer) => {
-      setTimeout(() => {
-        observer.next(this.coursesList);
-      }, 333);
-
-      // setTimeout(() => {
-      //   observer.next(43);
-      // }, 2000);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 777);
-    });
+    return Observable.of(this.coursesList);
   }
 
   /*
@@ -38,19 +26,7 @@ export class CoursesService {
     this.coursesList = [rawModel, ...this.coursesList];
     console.warn('createCourse success');
     // return Observable.from(rawModel);
-    return new Observable((observer) => {
-      setTimeout(() => {
-        observer.next(rawModel);
-      }, 333);
-
-      // setTimeout(() => {
-      //   observer.next(43);
-      // }, 2000);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 777);
-    });
+    return Observable.of(rawModel);
   }
 
   // TODO: to return    : Observable<CourseModel>
@@ -58,34 +34,14 @@ export class CoursesService {
     // $http.patch()
 
     // return Observable.from(null);
-    return new Observable((observer) => {
-      setTimeout(() => {
-        observer.next(null);
-      }, 333);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 777);
-    });
+    return Observable.of(null);
   }
 
   public getCourseById(id: string): Observable<CourseModel> {
     // $http.get()
     const result = _.find(this.coursesList, {id});
     // return Observable.from(result);
-    return new Observable((observer) => {
-      setTimeout(() => {
-        observer.next(result);
-      }, 333);
-
-      // setTimeout(() => {
-      //   observer.next(43);
-      // }, 2000);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 777);
-    });
+    return Observable.of(result);
   }
 
   public removeCourseById(id: string): Observable<CourseModel[]> {
@@ -93,18 +49,6 @@ export class CoursesService {
     console.warn('removeCourseById acknowledged delete');
     this.coursesList = _.reject(this.coursesList, {id});
     // return Observable.from(this.coursesList);
-    return new Observable((observer) => {
-      setTimeout(() => {
-        observer.next(this.coursesList);
-      }, 333);
-
-      // setTimeout(() => {
-      //   observer.next(43);
-      // }, 2000);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 777);
-    });
+    return Observable.of(this.coursesList);
   }
 }
