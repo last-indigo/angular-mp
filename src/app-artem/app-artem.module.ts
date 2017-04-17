@@ -14,6 +14,7 @@ import { AppArtemComponent } from './app-artem.component';
 import { LoginPageComponent } from './login-page';
 import { AppArtemService } from './app-artem.service';
 import { AuthService } from './auth';
+import { FreshnessDetectorService } from './common/freshness-detector.service';
 
 import { SiteHeaderComponent } from './site-header';
 import { SiteFooterComponent } from './site-footer';
@@ -62,6 +63,7 @@ const DECLARATIONS = [
 const PROVIDERS = [
   AuthService,
   CoursesService,
+  FreshnessDetectorService,
   AppArtemService
 ];
 
