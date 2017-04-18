@@ -16,6 +16,7 @@ import { AuthService } from './auth';
 })
 export class AppArtemComponent implements OnInit {
   public welcomeMessage: string;
+  public view: string;
   private timer: number = Date.now();
 
   constructor(public authService: AuthService,
@@ -23,6 +24,7 @@ export class AppArtemComponent implements OnInit {
               private appArtemService: AppArtemService) {
     // NOTE: gets instantiated, only when required as dependency
     this.authService = authService;
+    this.view = 'courses';
 
     this.welcomeMessage = appArtemService.welcomeMessage;
   }
@@ -37,5 +39,9 @@ export class AppArtemComponent implements OnInit {
       console.log('AppArtemComponent: onStable.subscribe msg', msg);
       console.log('AppArtemComponent: _ngZone profiling took %s ms', this.timer);
     });
+  }
+
+  public changeViewTo($event) {
+    this.view = $event.toView || '';
   }
 }

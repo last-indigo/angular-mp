@@ -26,6 +26,7 @@ import {
 
   CoursesService
 } from './courses';
+import { CourseAddComponent } from './course-add/course-add.component'
 
 import { BreadcrumbsComponent } from './breadcrumbs';
 import { LoginControlsComponent } from './login-controls';
@@ -44,6 +45,8 @@ const DECLARATIONS = [
   CoursesComponent,
   CoursesToolboxComponent,
   CourseComponent,
+
+  CourseAddComponent,
 
   SiteHeaderComponent,
   SiteFooterComponent,

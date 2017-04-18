@@ -41,7 +41,8 @@ export class CoursesToolboxComponent {
     };
 
     this.onAddCourse.emit({
-      course: newCourseModel,
+      // course: newCourseModel,
+      toView: 'add-course',
       $event
     });
   }

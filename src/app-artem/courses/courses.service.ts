@@ -11,7 +11,7 @@ export class CoursesService {
     // Use map function to cast response shape to data model. (since BE side is not implemented yet
     // - pretend to have fake collection not to match data model).
     CoursesService.prepareMapWithBEErrors(this.BE_MISTAKES_MAPPING);
-    
+
     this.coursesList = coursesMockData;
     console.log('CoursesService: constructor() this.coursesList', this.coursesList);
   }

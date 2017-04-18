@@ -4,8 +4,14 @@
 </login-page>
 
 <!-- TODO: this will be routed: no need to create separate component -->
-<app-courses *ngIf="authService.isAuthenticated()">
+<app-courses
+  (onViewChange)="changeViewTo($event)"
+  *ngIf="authService.isAuthenticated() && view === 'courses'">
 </app-courses>
+
+<course-add *ngIf="authService.isAuthenticated() && view === 'add-course'">
+  view === 'add-course'
+</course-add>
 
 <site-footer></site-footer>
 

@@ -11,7 +11,7 @@ import {
 
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges
+  SimpleChanges, Output, EventEmitter
 } from '@angular/core';
 import { CourseModel } from './course/course.model';
 import { CoursesService } from './courses.service';
@@ -33,6 +33,7 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
 export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
   AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit {
 
+  @Output() public onViewChange: EventEmitter = new EventEmitter();
   public courses: CourseModel[];
   private filteredCourses: CourseModel[];
   private freshnessCriterionDays: number = 14;
@@ -149,21 +150,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
   public handleAddCourseParent($event) {
     console.log('handleAddCourseParent caught in CoursesComponent', $event);
 
-    this.coursesService.createCourse($event.course)
-      .subscribe(
-        (response) => {
-          // the following is required, otherwise the view will not be updated
-          this.ref.markForCheck();
-          this.courses = [response, ...this.courses];
-        },
-        (error) => {
-          console.log('handleAddCourseParent| observable error:', error);
-        },
-        () => {
-          console.log('handleAddCourseParent| observable final');
-        }
-      )
-    ;
+    this.onViewChange.emit($event);
   }
 
   public ngOnInit(): void {
