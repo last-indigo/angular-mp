@@ -5,8 +5,13 @@ import * as _ from 'lodash';
 
 export class CoursesService {
   private coursesList: CourseModel[];
+  private BE_MISTAKES_MAPPING: Map = new Map();
 
   constructor() {
+    // Use map function to cast response shape to data model. (since BE side is not implemented yet
+    // - pretend to have fake collection not to match data model).
+    CoursesService.prepareMapWithBEErrors(this.BE_MISTAKES_MAPPING);
+    
     this.coursesList = coursesMockData;
     console.log('CoursesService: constructor() this.coursesList', this.coursesList);
   }
@@ -14,7 +19,28 @@ export class CoursesService {
   // TODO: shouldn't this be inferred from the -- private coursesList: CourseModel[] --- ???
   public getCourses(): Observable<CourseModel[]> {
     // imitate async
-    return Observable.of(this.coursesList);
+    return Observable.of(this.coursesList)
+      .map((list: CourseModel[]) => {
+        return list.map((course: CourseModel) => {
+          return this.patchCourseBEToClient(course);
+        })
+      });
+  }
+
+  private static prepareMapWithBEErrors(mapObject) {
+    console.log('prepareMapWithBEErrors');
+    return mapObject.set('BE_MISTAKE_publishedDate', 'publishedDate');
+  }
+
+  private patchCourseBEToClient(oldCourse): CourseModel {
+    let newCourse = Object.create(oldCourse);
+    _.each(oldCourse, (valInitial, oldKey) => {
+      let newKey = this.BE_MISTAKES_MAPPING.has(oldKey) ?
+          this.BE_MISTAKES_MAPPING.get(oldKey) :
+          oldKey;
+      newCourse[newKey] = valInitial;
+    });
+    return newCourse;
   }
 
   /*
