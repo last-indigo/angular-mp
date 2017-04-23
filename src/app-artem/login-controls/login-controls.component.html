@@ -1,8 +1,15 @@
 <!--login-controls.component.html-->
+
+<!-- TODO: Doesn't work the following -->
+<!--<div *ngIf="authService.currentUser | async"-->
+
 <div *ngIf="authService.isAuthenticated()"
      class="login-controls-root">
   <h3>
-    {{username}}
+    <!-- TODO: WTF ??? How can I clear this up -->
+    <!-- http://stackoverflow.com/a/36242764/4726168 : Angular 2 - Displaying async Object data from promise -->
+    {{(user | async)?.name.first}}
+    {{(user | async)?.name.last}}
   </h3>
 
   <span

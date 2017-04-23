@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,19 +16,23 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./login-controls.component.scss']
 })
 export class LoginControlsComponent implements OnInit {
-  public username: string;
+  private user: Observable<any>;
 
   constructor(public authService: AuthService, private ref: ChangeDetectorRef) {
     console.log('LoginControlsComponent constructor');
   }
 
   public ngOnInit() {
-    this.authService.getUserInfo()
-      .subscribe((response) => {
+    this.user = this.authService.getUserInfo();
+    this.user
+      .subscribe((currentUser) => {
         // but now it should be OK to reason
-        this.username = response.name;
         this.ref.markForCheck();
       })
+      // NOTE: .do doesn't work on subscription
+      // .do((currentUser) => {
+      //   console.log('currentUser from .do()', currentUser);
+      // });
     ;
   }
 

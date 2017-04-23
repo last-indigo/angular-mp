@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 /**
  * otherwise, *ngFor is not working
@@ -73,6 +74,7 @@ const PROVIDERS = [
 const IMPORTS = [
   BrowserModule,
   FormsModule,
+  HttpModule,
   ModalModule.forRoot(),
   BootstrapModalModule,
 ];
