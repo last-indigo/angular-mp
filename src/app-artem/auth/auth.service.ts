@@ -39,21 +39,19 @@ export class AuthService {
   // Login (stores fake user info and token to local storage)
   public login(credentials) {
     console.log('AuthService: login()');
-    return this.usersList
-      .map((usersList: UserInfoInterface[]) => {
-        // TODO: this is bad! do not fetch all users to match just one
-        // I don't know how to get single userInfo by username
-        this.currentUser = _.find(usersList, user => user.login === credentials.name);
-        console.log('AuthService: this.currentUser', this.currentUser);
-
-        if (this.currentUser && this.currentUser.fakeToken) {
+    return this.http.post(`${this.baseUrl}/auth/login`, {
+      login: credentials.name,
+      password: credentials.password
+    })
+      .map((response) => {
+        const result: { token: string } = response.json();
+        console.log('token', result);
+        if (result.token) {
           // TODO: where should LS be manipulated? can I chain (with map or smth else)?
-          localStorage.setItem(this.userInfoLSKey, JSON.stringify(this.currentUser));
-          localStorage.setItem(this.authLSKey, JSON.stringify(this.currentUser.fakeToken));
+          localStorage.setItem(this.authLSKey, JSON.stringify(result.token));
         }
-        return Observable.of(this.currentUser);
       })
-      .switch();  // stream current user
+      ;
   }
 
   // Logout (wipes fake user info and token from local storage)

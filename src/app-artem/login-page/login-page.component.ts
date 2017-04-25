@@ -27,10 +27,16 @@ export class LoginPageComponent {
 
     // this returns unsubscribe fn, not useful for chaining
     this.authService.login(this.userInfoInput)
-      .subscribe((currentUser) => {
-        // but now login info should be READY
-        this.ref.markForCheck();
-      });
+      .subscribe(
+        (currentUser) => {
+          // but now login info should be READY
+          this.ref.markForCheck();
+        },
+        (error) => {
+          alert(`auth error: ${error.toString()}`);
+          console.log(error);
+        }
+      );
 
     // app login info is not yet available - observable!
     // this.ref.markForCheck();
