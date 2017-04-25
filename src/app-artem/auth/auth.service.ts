@@ -19,7 +19,7 @@ export class AuthService {
   private authLSKey: string = 'a2-Auth_fakeToken';
 
   private userInfoLSKey: string = 'a2-Auth_userInfo';
-  private baseUrl = '//localhost:3004';
+  private baseUrl: string = '//localhost:3004'; // TODO: move to constant
   private usersList: Observable<UserInfoInterface[]> = this.getUsers();
   private currentUser: UserInfoInterface;
 
