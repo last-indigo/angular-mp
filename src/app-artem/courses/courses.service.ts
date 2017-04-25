@@ -43,7 +43,8 @@ export class CoursesService {
       });
   }
 
-  private static doCourseMappingBEToFE(mapObject) {
+  // #7. Map response shape to corresponding interface.
+  private static doCourseMappingBEToFE(mapObject: Map<string, string>) {
     console.log('doCourseMappingBEToFE');
     mapObject.set('id', 'id');
     mapObject.set('isTopRated', 'topRated');
