@@ -142,10 +142,11 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
       // keep original courses list intact
       this.filteredCourses = [...this.courses];
     }
-    this.filteredCourses = [...this.courses].filter((course) => {
-      // 'A'.includes('a') === false
-      return course.title.toLowerCase().includes(queryString.toLowerCase());
-    });
+    this.coursesService.searchCoursesByQuery(queryString)
+      .subscribe((filteredCoursesList) => {
+        this.ref.markForCheck();
+        this.filteredCourses = filteredCoursesList;
+      });
   }
 
   public handleAddCourseParent($event) {

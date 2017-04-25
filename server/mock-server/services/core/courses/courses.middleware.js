@@ -20,6 +20,9 @@ module.exports = (server) => {
     if (from && to) {
       courses = courses.slice(from, to);
     }
+    if (queryStr) {
+      courses = courses.filter((course) => course.name.includes(queryStr) || course.description.includes(queryStr));
+    }
 
     res.json(courses);
   });

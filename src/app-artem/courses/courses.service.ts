@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+import { Http, RequestOptions, URLSearchParams, Response, Request, RequestMethod } from '@angular/http';
 
 import { CourseModel } from './course/course.model';
 import { Observable } from 'rxjs/Observable';
@@ -92,6 +92,22 @@ export class CoursesService {
     const result = _.find(this.coursesList, {id});
     // return Observable.from(result);
     return Observable.of(result);
+  }
+
+  public searchCoursesByQuery(queryString: string): Observable<CourseModel[]> {
+    let options = new RequestOptions();
+    options.url = `${this.baseUrl}/courses`;
+    options.method = RequestMethod.Get;
+    options.search = new URLSearchParams();
+    if (queryString) {
+      options.search.set('query', queryString);
+    }
+    return this.http.request(new Request(options))
+      .map((response: Response) => {
+        return response.json().map((course: CourseModel) => {
+          return this.patchCourseBEToClient(course);
+        });
+      });
   }
 
   public removeCourseById(id: string): Observable<CourseModel[]> {
