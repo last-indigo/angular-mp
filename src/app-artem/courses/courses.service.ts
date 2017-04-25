@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 export class CoursesService {
   private coursesList: CourseModel[];
-  private BE_MISTAKES_MAPPING: Map = new Map();
+  private BE_MISTAKES_MAPPING: Map<string, string> = new Map();
 
   constructor() {
     // Use map function to cast response shape to data model. (since BE side is not implemented yet
@@ -23,7 +23,7 @@ export class CoursesService {
       .map((list: CourseModel[]) => {
         return list.map((course: CourseModel) => {
           return this.patchCourseBEToClient(course);
-        })
+        });
       });
   }
 
