@@ -114,8 +114,16 @@ export class CoursesService {
   public removeCourseById(id: string): Observable<CourseModel[]> {
     // $http.get()
     console.warn('removeCourseById acknowledged delete');
-    this.coursesList = _.reject(this.coursesList, {id});
-    // return Observable.from(this.coursesList);
-    return Observable.of(this.coursesList);
+
+    // #5: Add integration for course delete. Recall courses list after delete action
+    return this.http.delete(`${this.baseUrl}/courses/${id}`)
+      .map((response: Response) => {
+        return response.json();
+
+        // NOTE: not an array of new courses
+        // .map((course: CourseModel) => {
+        //   return this.patchCourseBEToClient(course);
+        // });
+      });
   }
 }

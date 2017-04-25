@@ -88,22 +88,27 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy,
       .then((confirmation) => {
         return this.coursesService.removeCourseById($event[0]);
       })
+      // NOTE: do NOT do another .then() chaining here, this will break observable
       .then((observableInstance) => {
         console.log(`from this.coursesService.removeCourseById:`, observableInstance);
 
-        observableInstance.subscribe(
-          (response) => {
-            // the following is required, otherwise the view will not be updated
-            this.ref.markForCheck();
-            this.courses = response;
-          },
-          (error) => {
-            console.log('removeCourseById| observable error:', error);
-          },
-          () => {
-            console.log('removeCourseById| observable final');
-          }
-        );
+        // #5: Add integration for course delete. Recall courses list after delete action
+        observableInstance
+          .map(() => this.coursesService.getCourses())
+          .switch()
+          .subscribe(
+            (response) => {
+              // the following is required, otherwise the view will not be updated
+              this.ref.markForCheck();
+              this.courses = response;
+            },
+            (error) => {
+              console.log('removeCourseById| observable error:', error);
+            },
+            () => {
+              console.log('removeCourseById| observable final');
+            }
+          );
       })
       .catch((reason) => {
         console.log('handleRemoveCourseParent failed with reason:', reason);
