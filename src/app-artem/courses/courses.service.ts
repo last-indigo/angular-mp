@@ -57,6 +57,7 @@ export class CoursesService {
 
   private patchCourseBEToClient(oldCourse): CourseModel {
     let newCourse = Object.create(oldCourse);
+    //noinspection TypeScriptUnresolvedFunction
     _(oldCourse)
       .keys()
       .each((oldKey, idx) => {
@@ -68,16 +69,13 @@ export class CoursesService {
     return newCourse;
   }
 
-  /*
-   * From task notes: "Do not use http module to solve a task."
-   */
-
   public createCourse(rawModel: CourseModel): Observable<CourseModel> {
-    // $http.post()
-    this.coursesList = [rawModel, ...this.coursesList];
-    console.warn('createCourse success');
-    // return Observable.from(rawModel);
-    return Observable.of(rawModel);
+    // TODO: convert FE model to BE model
+    return this.http.post(`${this.baseUrl}/courses/`, rawModel)
+      .map((response: Response) => {
+        console.warn('createCourse success');
+        return response.json();
+      });
   }
 
   // TODO: to return    : Observable<CourseModel>
@@ -112,12 +110,10 @@ export class CoursesService {
   }
 
   public removeCourseById(id: string): Observable<CourseModel[]> {
-    // $http.get()
-    console.warn('removeCourseById acknowledged delete');
-
     // #5: Add integration for course delete. Recall courses list after delete action
     return this.http.delete(`${this.baseUrl}/courses/${id}`)
       .map((response: Response) => {
+        console.warn('removeCourseById acknowledged delete');
         return response.json();
 
         // NOTE: not an array of new courses

@@ -9,7 +9,10 @@ import { BrowserModule } from '@angular/platform-browser';
 /**
  * otherwise, *ngModel is not working
  */
-import { FormsModule }   from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 
 import { AppArtemComponent } from './app-artem.component';
 import { LoginPageComponent } from './login-page';
@@ -74,6 +77,7 @@ const PROVIDERS = [
 const IMPORTS = [
   BrowserModule,
   FormsModule,
+  ReactiveFormsModule,
   HttpModule,
   ModalModule.forRoot(),
   BootstrapModalModule,
