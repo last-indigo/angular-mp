@@ -2,6 +2,10 @@
       (submit)="submitNewCourse(addCourseForm)">
   <p>
     Title: <input type="text" [formControlName]="courseFieldsBE.name">
+    <!-- #nameControl will not show angular validity objects -->
+    <span *ngIf="addCourseForm.get(courseFieldsBE.name).invalid">
+      {{addCourseForm.get(courseFieldsBE.name).errors | json}}
+    </span>
   </p>
 
   <p>
@@ -10,6 +14,9 @@
                            id=""
                            cols="30"
                            rows="10"></textarea>
+    <span *ngIf="addCourseForm.get(courseFieldsBE.description).invalid">
+      {{addCourseForm.get(courseFieldsBE.description).errors | json}}
+    </span>
   </p>
 
   <p>
@@ -28,8 +35,8 @@
   </p>
 
   <p>
-    <button type="submit">SUBMIT</button>
-    <button (click)="save()">Save</button>
+    <button type="submit" [disabled]="!addCourseForm.valid">SUBMIT</button>
+    <button (click)="save()" [disabled]="!addCourseForm.valid">Save</button>
     <button (click)="cancel()">Cancel</button>
   </p>
 </form>
