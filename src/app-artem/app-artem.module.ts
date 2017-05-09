@@ -42,6 +42,7 @@ import { MyOrderByPipe } from './courses/order-by.pipe';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+import DateCustomControlComponent from "./form-controls-custom/date-control.component";
 
 const DECLARATIONS = [
   LoginPageComponent,
@@ -63,6 +64,8 @@ const DECLARATIONS = [
   IndicateLatestDirective,
   ArtemDurationPipe,
   MyOrderByPipe,
+
+  DateCustomControlComponent,
 
   AppArtemComponent
 ];
