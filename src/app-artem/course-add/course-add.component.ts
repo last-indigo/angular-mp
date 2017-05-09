@@ -65,10 +65,10 @@ export class CourseAddComponent {
     length: 'length'
   };
   public addCourseForm = this.formBuilder.group({
+    // initialization values go as first arg
     [this.courseFieldsBE.name]: ['', Length50Validator],
     [this.courseFieldsBE.description]: ['', Length500Validator],
-    [this.courseFieldsBE.date]: [''],
+    [this.courseFieldsBE.date]: ['30/11/2016'],
     [this.courseFieldsBE.length]: [''],
   });
-
 }
