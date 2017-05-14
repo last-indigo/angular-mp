@@ -71,4 +71,12 @@ export class CourseAddComponent {
     [this.courseFieldsBE.date]: ['30/11/2016'],
     [this.courseFieldsBE.length]: [''],
   });
+
+  public authorsList = [
+    {name: 'Author 1', checked: true},
+    {name: 'Author 2', checked: false},
+    {name: 'Author 3', checked: true},
+    {name: 'Author 4', checked: true},
+    {name: 'Author 5', checked: false},
+  ]
 }

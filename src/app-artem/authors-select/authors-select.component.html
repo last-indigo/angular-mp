@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let author of people">
+    <input type="checkbox" [checked]="author.checked">
+    <span>{{author.name}}</span>
+  </li>
+</ul>

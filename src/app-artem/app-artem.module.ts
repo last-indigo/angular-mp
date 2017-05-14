@@ -43,6 +43,7 @@ import { MyOrderByPipe } from './courses/order-by.pipe';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import DateCustomControlComponent from "./form-controls-custom/date-control.component";
+import {AuthorsSelectComponent} from "./authors-select/authors-select.component";
 
 const DECLARATIONS = [
   LoginPageComponent,
@@ -66,6 +67,7 @@ const DECLARATIONS = [
   MyOrderByPipe,
 
   DateCustomControlComponent,
+  AuthorsSelectComponent,
 
   AppArtemComponent
 ];
