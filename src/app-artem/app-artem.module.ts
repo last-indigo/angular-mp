@@ -42,8 +42,12 @@ import { MyOrderByPipe } from './courses/order-by.pipe';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
-import DateCustomControlComponent from "./form-controls-custom/date-control.component";
-import {AuthorsSelectComponent} from "./authors-select/authors-select.component";
+import DateCustomControlComponent from './form-controls-custom/date-control.component';
+import { AuthorsSelectComponent } from './authors-select/authors-select.component';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app.routes';
+import { AuthGuard } from './auth/auth.guard';
+import { CanDeactivateCourses } from './courses/courses.guards';
 
 const DECLARATIONS = [
   LoginPageComponent,
@@ -74,6 +78,8 @@ const DECLARATIONS = [
 
 const PROVIDERS = [
   AuthService,
+  AuthGuard,
+  CanDeactivateCourses,
   CoursesService,
   FreshnessDetectorService,
   AppArtemService
@@ -86,6 +92,8 @@ const IMPORTS = [
   HttpModule,
   ModalModule.forRoot(),
   BootstrapModalModule,
+  RouterModule.forRoot(ROUTES, {useHash: true})
+  // `useHash` enables the location strategy that uses the URL fragment instead of the history API.
 ];
 
 @NgModule({
