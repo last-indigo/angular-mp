@@ -1,13 +1,21 @@
 <site-header></site-header>
 
-<login-page *ngIf="!authService.isAuthenticated()">
-</login-page>
+<!-- ./home - current -->
+<!-- ../home - parent -->
+<!-- /home - baseUrl -->
+<a routerLink="./courses" routerLinkActive="link-active-class">home</a>
+<a routerLink="./login" routerLinkActive="link-active-class">login</a>
+
+<router-outlet></router-outlet>
+
+<!--<login-page *ngIf="!authService.isAuthenticated()">-->
+<!--</login-page>-->
 
 <!-- TODO: this will be routed: no need to create separate component -->
-<app-courses
-  (onViewChange)="changeViewTo($event)"
-  *ngIf="authService.isAuthenticated() && view === 'courses'">
-</app-courses>
+<!--<app-courses-->
+  <!--(onViewChange)="changeViewTo($event)"-->
+  <!--*ngIf="authService.isAuthenticated() && view === 'courses'">-->
+<!--</app-courses>-->
 
 <course-add *ngIf="authService.isAuthenticated() && view === 'add-course'"
             (onCourseAdded)="handleCourseAdded($event)">
