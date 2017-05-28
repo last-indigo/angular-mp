@@ -33,6 +33,9 @@ export class CourseAddComponent {
       /**
        * TODO: should the route not be manipulated here, and instead be taken as component input?
        */
+
+      // TODO: params in BreadcrumbsComponent are NOT AVAILABLE!
+      console.error('COURSE ADD params', params);
       const {id} = params;
       this.courses.getCourseById(id)
         .subscribe((course) => {
