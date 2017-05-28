@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +18,7 @@ export class LoginPageComponent {
   public userInfoInput: any = {};
 
   constructor(public authService: AuthService,
+              private router: Router,
               private ref: ChangeDetectorRef) {
     // NOTE: gets instantiated, only when required as dependency
     this.authService = authService;

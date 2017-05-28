@@ -26,7 +26,9 @@
   </div>
 
   <div class="course-video__controls">
-    <button class="course-video__controls__edit-button" (click)="editCourse($event)">
+    <button class="course-video__controls__edit-button"
+            [routerLink]="['/courses', courseInput.id]"
+            (click)="editCourse($event)">
       Edit course
     </button>
     <button class="course-video__controls__delete-button" (click)="deleteCourse($event)">

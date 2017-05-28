@@ -48,9 +48,11 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { AuthGuard } from './auth/auth.guard';
 import { CanDeactivateCourses } from './courses/courses.guards';
+import {PageNotFoundComponent} from "./404/404.component";
 
 const DECLARATIONS = [
   LoginPageComponent,
+  PageNotFoundComponent,
 
   CoursesComponent,
   CoursesToolboxComponent,

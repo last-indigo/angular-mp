@@ -18,7 +18,10 @@ import { Observable } from 'rxjs';
 export class LoginControlsComponent implements OnInit {
   private user: Observable<any>;
 
-  constructor(public authService: AuthService, private ref: ChangeDetectorRef) {
+  constructor(
+    public authService: AuthService,
+    private ref: ChangeDetectorRef,
+  ) {
     console.log('LoginControlsComponent constructor');
   }
 

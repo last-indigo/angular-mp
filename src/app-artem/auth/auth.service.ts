@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { Http } from '@angular/http';
 import { UserInfoInterface } from './user-info.interface'
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,10 @@ export class AuthService {
   private usersList: Observable<UserInfoInterface[]> = this.getUsers();
   private currentUser: UserInfoInterface;
 
-  constructor(private http: Http) {
+  constructor(
+    private http: Http,
+    private router: Router,
+  ) {
     console.log('AuthService');
   }
 
@@ -49,6 +53,7 @@ export class AuthService {
         if (result.token) {
           // TODO: where should LS be manipulated? can I chain (with map or smth else)?
           localStorage.setItem(this.authLSKey, JSON.stringify(result.token));
+          this.router.navigate(['/']);
         }
       })
       ;
@@ -58,6 +63,12 @@ export class AuthService {
   public logout() {
     localStorage.removeItem(this.authLSKey);
     console.log('authService#logout');
+
+    return Promise.resolve()
+      .then(() => {
+        // TODO: where should this be?
+        this.router.navigate(['/login']);
+      });
   }
 
   // IsAuthenticated (boolean)
