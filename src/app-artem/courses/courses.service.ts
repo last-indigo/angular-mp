@@ -90,6 +90,10 @@ export class CoursesService {
   }
 
   public getCourseById(id: string): Observable<CourseModel> {
+    if (_.isUndefined(id)) {
+      console.error('incorrect course id');
+      return Observable.of(null);
+    }
     return this.http.get(`${this.COURSES_URL}/${id}`)
       .map((response: Response) => response.json())
       .map((course: CourseModel) => {

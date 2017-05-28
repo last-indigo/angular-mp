@@ -1,12 +1,14 @@
 // course-add.component.ts
 import * as _ from 'lodash';
-import {Component, Output, EventEmitter} from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { ArtemDurationPipe } from '../common/duration.pipe';
 import { FormBuilder } from '@angular/forms';
+
 import { Length50Validator } from '../common/validators/length.50.validator';
 import { Length500Validator } from '../common/validators/length.500.validator';
 import { CoursesService } from "../courses/courses.service";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'course-add',
@@ -18,11 +20,11 @@ import { ActivatedRoute } from "@angular/router";
   ]
 })
 export class CourseAddComponent {
-  @Output() public onCourseAdded: EventEmitter = new EventEmitter();
-
   constructor(
     private courses: CoursesService,
     private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
     private formBuilder: FormBuilder
   ){}
 
@@ -40,6 +42,10 @@ export class CourseAddComponent {
   }
 
   private updateFormValues(course) {
+    if (!_.isObject(course)) {
+      console.error('course param is invalid');
+      return;
+    }
     _.values(this.courseFieldsBE)
       .forEach((propName) => this.addCourseForm.controls[propName].setValue(course[propName]));
   }
@@ -65,14 +71,17 @@ export class CourseAddComponent {
   }
 
   public cancel() {
-    alert('canceled!');
+    this.location.back();
   }
 
   public submitNewCourse(formGroup) {
     // const titleFormControl = formGroup.get('title');
     // const descriptionsFormControl = formGroup.get('descriptionNewCourse');
 
-    this.onCourseAdded.emit(formGroup.value);
+    this.courses.createCourse(formGroup.value)
+      .subscribe((newCourse) => {
+        this.router.navigate(['/']);
+      })
   }
 
   // public courseFieldsFE = {

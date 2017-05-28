@@ -21,7 +21,6 @@ export class AppArtemComponent implements OnInit {
   private timer: number = Date.now();
 
   constructor(public authService: AuthService,
-              private coursesService: CoursesService,
               private _ngZone: NgZone,
               private appArtemService: AppArtemService) {
     // NOTE: gets instantiated, only when required as dependency
@@ -29,16 +28,6 @@ export class AppArtemComponent implements OnInit {
     this.view = 'courses';
 
     this.welcomeMessage = appArtemService.welcomeMessage;
-  }
-
-  public handleCourseAdded(newCourse) {
-    this.coursesService.createCourse(newCourse)
-      .subscribe(
-        (response) => {
-          console.error('response', response);
-          window.location.href = '/';
-        }
-      );
   }
 
   public ngOnInit(): void {
