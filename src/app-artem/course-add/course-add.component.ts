@@ -1,9 +1,12 @@
 // course-add.component.ts
-import { Component, Output, EventEmitter } from '@angular/core';
+import * as _ from 'lodash';
+import {Component, Output, EventEmitter} from '@angular/core';
 import { ArtemDurationPipe } from '../common/duration.pipe';
 import { FormBuilder } from '@angular/forms';
 import { Length50Validator } from '../common/validators/length.50.validator';
 import { Length500Validator } from '../common/validators/length.500.validator';
+import { CoursesService } from "../courses/courses.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'course-add',
@@ -18,8 +21,28 @@ export class CourseAddComponent {
   @Output() public onCourseAdded: EventEmitter = new EventEmitter();
 
   constructor(
+    private courses: CoursesService,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ){}
+
+  public ngOnInit() {
+    this.route.params.subscribe((params) => {
+      /**
+       * TODO: should the route not be manipulated here, and instead be taken as component input?
+       */
+      const {id} = params;
+      this.courses.getCourseById(id)
+        .subscribe((course) => {
+          this.updateFormValues(course);
+        });
+    })
+  }
+
+  private updateFormValues(course) {
+    _.values(this.courseFieldsBE)
+      .forEach((propName) => this.addCourseForm.controls[propName].setValue(course[propName]));
+  }
 
   public save() {
     alert('saved!');

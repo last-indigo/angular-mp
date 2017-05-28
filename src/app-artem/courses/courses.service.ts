@@ -15,6 +15,8 @@ export class CoursesService {
   private BE_MISTAKES_MAPPING: Map<string, string> = new Map();
   private baseUrl: string = '//localhost:3004'; // TODO: move to constant
 
+  private COURSES_URL: string = `${this.baseUrl}/courses`;
+
   constructor(public http: Http) {
     this.init();
   }
@@ -32,13 +34,14 @@ export class CoursesService {
 
   public getCourses(): Observable<CourseModel[]> {
     // imitate async
-    return this.http.get(`${this.baseUrl}/courses`)
+    return this.http.get(this.COURSES_URL)
       .map((response: Response) => response.json())
       .map((list: CourseModel[]) => {
         const result = list.map((course: CourseModel) => {
           return this.patchCourseBEToClient(course);
         });
 
+        this.coursesList = result;
         return result;
       });
   }
@@ -71,7 +74,7 @@ export class CoursesService {
 
   public createCourse(rawModel: CourseModel): Observable<CourseModel> {
     // TODO: convert FE model to BE model
-    return this.http.post(`${this.baseUrl}/courses/`, rawModel)
+    return this.http.post(this.COURSES_URL, rawModel)
       .map((response: Response) => {
         console.warn('createCourse success');
         return response.json();
@@ -87,15 +90,16 @@ export class CoursesService {
   }
 
   public getCourseById(id: string): Observable<CourseModel> {
-    // $http.get()
-    const result = _.find(this.coursesList, {id});
-    // return Observable.from(result);
-    return Observable.of(result);
+    return this.http.get(`${this.COURSES_URL}/${id}`)
+      .map((response: Response) => response.json())
+      .map((course: CourseModel) => {
+        return this.patchCourseBEToClient(course);
+      });
   }
 
   public searchCoursesByQuery(queryString: string): Observable<CourseModel[]> {
     let options = new RequestOptions();
-    options.url = `${this.baseUrl}/courses`;
+    options.url = this.COURSES_URL;
     options.method = RequestMethod.Get;
     options.search = new URLSearchParams();
     if (queryString) {
@@ -111,7 +115,7 @@ export class CoursesService {
 
   public removeCourseById(id: string): Observable<CourseModel[]> {
     // #5: Add integration for course delete. Recall courses list after delete action
-    return this.http.delete(`${this.baseUrl}/courses/${id}`)
+    return this.http.delete(`${this.COURSES_URL}/${id}`)
       .map((response: Response) => {
         console.warn('removeCourseById acknowledged delete');
         return response.json();
