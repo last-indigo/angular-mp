@@ -5,6 +5,10 @@ import { Http } from '@angular/http';
 import { UserInfoInterface } from './user-info.interface'
 import {Router} from "@angular/router";
 
+import {Store} from '@ngrx/store';
+import {LOGIN} from './auth-reducer';
+import {LOGOUT} from './auth-reducer';
+
 @Injectable()
 export class AuthService {
   /*
@@ -27,6 +31,7 @@ export class AuthService {
   constructor(
     private http: Http,
     private router: Router,
+    private store: Store,
   ) {
     console.log('AuthService');
   }
@@ -55,6 +60,13 @@ export class AuthService {
           localStorage.setItem(this.authLSKey, JSON.stringify(result.token));
           this.router.navigate(['/']);
         }
+        this.store.dispatch({
+          type: LOGIN,
+          payload: {
+            credentials: credentials,
+            token: result.token
+          }
+        });
       })
       ;
   }
@@ -62,6 +74,7 @@ export class AuthService {
   // Logout (wipes fake user info and token from local storage)
   public logout() {
     localStorage.removeItem(this.authLSKey);
+    this.store.dispatch({type: LOGOUT});
     console.log('authService#logout');
 
     return Promise.resolve()

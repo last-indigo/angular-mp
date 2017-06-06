@@ -50,6 +50,9 @@ import { AuthGuard } from './auth/auth.guard';
 import { CanDeactivateCourses } from './courses/courses.guards';
 import {PageNotFoundComponent} from "./404/404.component";
 
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from "./auth/auth-reducer";
+
 const DECLARATIONS = [
   LoginPageComponent,
   PageNotFoundComponent,
@@ -94,6 +97,7 @@ const IMPORTS = [
   HttpModule,
   ModalModule.forRoot(),
   BootstrapModalModule,
+  StoreModule.provideStore({authStoreKey: authReducer}),
   RouterModule.forRoot(ROUTES, {useHash: true})
   // `useHash` enables the location strategy that uses the URL fragment instead of the history API.
 ];

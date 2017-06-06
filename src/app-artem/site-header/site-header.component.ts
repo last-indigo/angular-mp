@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
+import {Store} from '@ngrx/store';
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
 
@@ -13,7 +15,13 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './site-header.component.html'
 })
 export class SiteHeaderComponent {
-  constructor(public authService: AuthService) {
+  private authReducerData;
 
+  constructor(public authService: AuthService,
+              private store: Store,) {
+  }
+
+  ngOnInit() {
+    this.authReducerData = this.store.select('authStoreKey');
   }
 }
