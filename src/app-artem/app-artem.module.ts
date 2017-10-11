@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule } from '@angular/http';
 
 /**
  * otherwise, *ngFor is not working
@@ -39,6 +39,7 @@ import { MyOrderByPipe } from './courses/order-by.pipe';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+import { AuthorizedHttp } from './common/http.interceptor.service';
 
 const DECLARATIONS = [
   LoginPageComponent,
@@ -65,6 +66,13 @@ const DECLARATIONS = [
 ];
 
 const PROVIDERS = [
+  // You can't just add it to the providers like this
+  // http://stackoverflow.com/questions/40507670/no-provider-for-connectionbackend-while-inheriting-from-http
+  // {
+  //   provide: Http,
+  //   useClass: AuthorizedHttp
+  // },
+  // AuthorizedHttp,
   AuthService,
   CoursesService,
   FreshnessDetectorService,

@@ -6,7 +6,7 @@ import {
 import { AuthService } from '../auth/auth.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 
   selector: 'site-header',
   styleUrls: ['site-header.component.scss'],

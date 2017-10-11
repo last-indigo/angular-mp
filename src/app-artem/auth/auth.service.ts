@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { Http } from '@angular/http';
 import { UserInfoInterface } from './user-info.interface'
+// import {AuthorizedHttp} from '../common/http.interceptor.service';
 
 @Injectable()
 export class AuthService {
@@ -14,8 +15,6 @@ export class AuthService {
    Implement fake action on logout (wipe user info, console.log etc...)
    */
 
-
-
   private authLSKey: string = 'a2-Auth_fakeToken';
 
   private userInfoLSKey: string = 'a2-Auth_userInfo';
@@ -23,13 +22,14 @@ export class AuthService {
   private usersList: Observable<UserInfoInterface[]> = this.getUsers();
   private currentUser: UserInfoInterface;
 
+  // constructor(private http: AuthorizedHttp) {
   constructor(private http: Http) {
     console.log('AuthService');
   }
 
   private getUsers() {
     return this.http.get(`${this.baseUrl}/users`)
-      .map(res => res.json());
+      .map((res) => res.json());
   }
 
   ngOnInit() {

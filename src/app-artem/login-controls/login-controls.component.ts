@@ -34,6 +34,10 @@ export class LoginControlsComponent implements OnInit {
       //   console.log('currentUser from .do()', currentUser);
       // });
     ;
+
+    // setInterval(() => {
+    //   this.ref.markForCheck();
+    // }, 10000);
   }
 
   public doLogout() {
