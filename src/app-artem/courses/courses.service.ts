@@ -17,6 +17,18 @@ export class CoursesService {
 
   private COURSES_URL: string = `${this.baseUrl}/courses`;
 
+  // #7. Map response shape to corresponding interface.
+  private static doCourseMappingBEToFE(mapObject: Map<string, string>) {
+    console.log('doCourseMappingBEToFE');
+    mapObject.set('id', 'id');
+    mapObject.set('isTopRated', 'topRated');
+    mapObject.set('name', 'title');
+    mapObject.set('description', 'description');
+    mapObject.set('date', 'publishedDate');
+    mapObject.set('length', 'duration');
+    return mapObject;
+  }
+
   constructor(public http: Http) {
     this.init();
   }
@@ -44,32 +56,6 @@ export class CoursesService {
         this.coursesList = result;
         return result;
       });
-  }
-
-  // #7. Map response shape to corresponding interface.
-  private static doCourseMappingBEToFE(mapObject: Map<string, string>) {
-    console.log('doCourseMappingBEToFE');
-    mapObject.set('id', 'id');
-    mapObject.set('isTopRated', 'topRated');
-    mapObject.set('name', 'title');
-    mapObject.set('description', 'description');
-    mapObject.set('date', 'publishedDate');
-    mapObject.set('length', 'duration');
-    return mapObject;
-  }
-
-  private patchCourseBEToClient(oldCourse): CourseModel {
-    let newCourse = Object.create(oldCourse);
-    //noinspection TypeScriptUnresolvedFunction
-    _(oldCourse)
-      .keys()
-      .each((oldKey, idx) => {
-        let newKey = this.BE_MISTAKES_MAPPING.has(oldKey) ?
-          this.BE_MISTAKES_MAPPING.get(oldKey) :
-          oldKey;
-        newCourse[newKey] = oldCourse[oldKey];
-      });
-    return newCourse;
   }
 
   public createCourse(rawModel: CourseModel): Observable<CourseModel> {
@@ -129,5 +115,19 @@ export class CoursesService {
         //   return this.patchCourseBEToClient(course);
         // });
       });
+  }
+
+  private patchCourseBEToClient(oldCourse): CourseModel {
+    let newCourse = Object.create(oldCourse);
+    //noinspection TypeScriptUnresolvedFunction
+    _(oldCourse)
+      .keys()
+      .each((oldKey, idx) => {
+        let newKey = this.BE_MISTAKES_MAPPING.has(oldKey) ?
+          this.BE_MISTAKES_MAPPING.get(oldKey) :
+          oldKey;
+        newCourse[newKey] = oldCourse[oldKey];
+      });
+    return newCourse;
   }
 }

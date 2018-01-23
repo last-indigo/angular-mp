@@ -1,4 +1,4 @@
-import {FormControl} from "@angular/forms";
+import { FormControl } from '@angular/forms';
 
 export function Length50Validator(c: FormControl) {
   return (c.value.length > 50) ?

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { Http } from '@angular/http';
-import { UserInfoInterface } from './user-info.interface'
-import {Router} from "@angular/router";
+import { UserInfoInterface } from './user-info.interface';
+import { Router } from '@angular/router';
 
-import {Store} from '@ngrx/store';
-import {LOGIN} from './auth-reducer';
-import {LOGOUT} from './auth-reducer';
+import { Store } from '@ngrx/store';
+import { LOGIN } from './auth-reducer';
+import { LOGOUT } from './auth-reducer';
 
 @Injectable()
 export class AuthService {
@@ -18,8 +18,6 @@ export class AuthService {
    Use authService in header component.
    Implement fake action on logout (wipe user info, console.log etc...)
    */
-
-
 
   private authLSKey: string = 'a2-Auth_fakeToken';
 
@@ -34,15 +32,6 @@ export class AuthService {
     private store: Store,
   ) {
     console.log('AuthService');
-  }
-
-  private getUsers() {
-    return this.http.get(`${this.baseUrl}/users`)
-      .map(res => res.json());
-  }
-
-  ngOnInit() {
-    // does not get called in @Injectable()'s
   }
 
   // Login (stores fake user info and token to local storage)
@@ -63,7 +52,7 @@ export class AuthService {
         this.store.dispatch({
           type: LOGIN,
           payload: {
-            credentials: credentials,
+            credentials,
             token: result.token
           }
         });
@@ -98,4 +87,13 @@ export class AuthService {
       JSON.parse(localStorage.getItem(this.userInfoLSKey))
     );
   }
+
+  private getUsers() {
+    return this.http.get(`${this.baseUrl}/users`)
+      .map((res) => res.json());
+  }
+
+  // does not get called in @Injectable()'s!
+  // public ngOnInit() {
+  // }
 }

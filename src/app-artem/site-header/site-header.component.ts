@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,14 +15,15 @@ import {Store} from '@ngrx/store';
   styleUrls: ['site-header.component.scss'],
   templateUrl: './site-header.component.html'
 })
-export class SiteHeaderComponent {
-  private authReducerData;
+export class SiteHeaderComponent implements OnInit {
+  public authReducerData;
 
   constructor(public authService: AuthService,
-              private store: Store,) {
+              private store: Store,
+            ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.authReducerData = this.store.select('authStoreKey');
   }
 }
