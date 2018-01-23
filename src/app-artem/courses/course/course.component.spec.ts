@@ -6,6 +6,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CourseComponent } from './course.component';
 import { ArtemDurationPipe } from '../../common/duration.pipe';
 import { inspect } from 'util';
+import { CourseModel } from './course.model';
 
 describe('Course Component', () => {
     let fixture: ComponentFixture<CourseComponent>;
@@ -36,5 +37,35 @@ describe('Course Component', () => {
     });
     it('should el be instanceof CourseComponent', () => {
         expect(comp instanceof CourseComponent).toBe(true);
+    });
+
+    describe('template contents', () => {
+        beforeEach(() => {
+            comp.courseInput = {
+                id: 'fake id',
+                topRated: true,
+                title: 'fake title',
+                duration: 999,
+                description: 'fake description',
+                publishedDate: new Date()
+            }
+            fixture.detectChanges();
+        })
+        it('has video__information__title', () => {    
+            let titleEl = fixture.debugElement.query(By.css('.course-video__information__title')).nativeElement;
+            expect(titleEl.textContent)
+                .toContain(comp.courseInput.title.toUpperCase());
+        });
+        // it('has video__information__duration', () => {    
+        //     let durationEl = fixture.debugElement.query(By.css('.course-video__information__duration')).nativeElement;
+        //     expect(durationEl.textContent)
+        //         .toContain(ArtemDurationPipe.transform(comp.courseInput.duration));
+        // });
+        
+        it('has video__information__date-published', () => {    
+            let publishedDate = fixture.debugElement.query(By.css('.course-video__information__date-published')).nativeElement;
+            expect(publishedDate.textContent)
+                .toContain(comp.courseInput.publishedDate.toString());
+        });
     });
 });
