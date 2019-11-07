@@ -7,8 +7,9 @@ import { FormBuilder } from '@angular/forms';
 
 import { Length50Validator } from '../common/validators/length.50.validator';
 import { Length500Validator } from '../common/validators/length.500.validator';
-import { CoursesService } from "../courses/courses.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { CoursesService } from '../courses/courses.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'course-add',
@@ -19,16 +20,45 @@ import {ActivatedRoute, Router} from "@angular/router";
     ArtemDurationPipe
   ]
 })
-export class CourseAddComponent {
+export class CourseAddComponent implements OnInit {
+  public courseFieldsBE = {
+    name: 'name',
+    description: 'description',
+    date: 'date',
+    length: 'length'
+  };
+
+  public addCourseForm = this.formBuilder.group({
+    // initialization values go as first arg
+    [this.courseFieldsBE.name]: ['', Length50Validator],
+    [this.courseFieldsBE.description]: ['', Length500Validator],
+    [this.courseFieldsBE.date]: ['30/11/2016'],
+    [this.courseFieldsBE.length]: [''],
+  });
+
+  public authorsList = [
+    {name: 'Author 1', checked: true},
+    {name: 'Author 2', checked: false},
+    {name: 'Author 3', checked: true},
+    {name: 'Author 4', checked: true},
+    {name: 'Author 5', checked: false},
+  ];
+
   constructor(
+    // public courseFieldsFE = {
+    //   title: 'title',
+    //   description: 'description',
+    //   publishedDate: 'publishedDate',
+    //   duration: 'duration'
+    // };
     private courses: CoursesService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
     private formBuilder: FormBuilder
-  ){}
+  ) {}
 
-  public ngOnInit() {
+    public ngOnInit() {
     this.route.params.subscribe((params) => {
       /**
        * TODO: should the route not be manipulated here, and instead be taken as component input?
@@ -41,16 +71,7 @@ export class CourseAddComponent {
         .subscribe((course) => {
           this.updateFormValues(course);
         });
-    })
-  }
-
-  private updateFormValues(course) {
-    if (!_.isObject(course)) {
-      console.error('course param is invalid');
-      return;
-    }
-    _.values(this.courseFieldsBE)
-      .forEach((propName) => this.addCourseForm.controls[propName].setValue(course[propName]));
+    });
   }
 
   public save() {
@@ -84,34 +105,15 @@ export class CourseAddComponent {
     this.courses.createCourse(formGroup.value)
       .subscribe((newCourse) => {
         this.router.navigate(['/']);
-      })
+      });
   }
 
-  // public courseFieldsFE = {
-  //   title: 'title',
-  //   description: 'description',
-  //   publishedDate: 'publishedDate',
-  //   duration: 'duration'
-  // };
-  public courseFieldsBE = {
-    name: 'name',
-    description: 'description',
-    date: 'date',
-    length: 'length'
-  };
-  public addCourseForm = this.formBuilder.group({
-    // initialization values go as first arg
-    [this.courseFieldsBE.name]: ['', Length50Validator],
-    [this.courseFieldsBE.description]: ['', Length500Validator],
-    [this.courseFieldsBE.date]: ['30/11/2016'],
-    [this.courseFieldsBE.length]: [''],
-  });
-
-  public authorsList = [
-    {name: 'Author 1', checked: true},
-    {name: 'Author 2', checked: false},
-    {name: 'Author 3', checked: true},
-    {name: 'Author 4', checked: true},
-    {name: 'Author 5', checked: false},
-  ]
+  private updateFormValues(course) {
+    if (!_.isObject(course)) {
+      console.error('course param is invalid');
+      return;
+    }
+    _.values(this.courseFieldsBE)
+      .forEach((propName) => this.addCourseForm.controls[propName].setValue(course[propName]));
+  }
 }

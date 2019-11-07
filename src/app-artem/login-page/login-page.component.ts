@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

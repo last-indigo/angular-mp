@@ -30,7 +30,7 @@ import {
 
   CoursesService
 } from './courses';
-import { CourseAddComponent } from './course-add/course-add.component'
+import { CourseAddComponent } from './course-add/course-add.component';
 
 import { BreadcrumbsComponent } from './breadcrumbs';
 import { LoginControlsComponent } from './login-controls';
@@ -48,10 +48,10 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { AuthGuard } from './auth/auth.guard';
 import { CanDeactivateCourses } from './courses/courses.guards';
-import {PageNotFoundComponent} from "./404/404.component";
+import { PageNotFoundComponent } from './404/404.component';
 
 import { StoreModule } from '@ngrx/store';
-import { authReducer } from "./auth/auth-reducer";
+import { authReducer } from './auth/auth-reducer';
 
 const DECLARATIONS = [
   LoginPageComponent,
