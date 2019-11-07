@@ -31,7 +31,7 @@ export class AuthService {
   constructor(
     private http: Http,
     private router: Router,
-    private store: Store,
+    private store: Store<any>,  // TODO type
   ) {
     console.log('AuthService');
   }

@@ -18,7 +18,8 @@ export class SiteHeaderComponent {
   private authReducerData;
 
   constructor(public authService: AuthService,
-              private store: Store,) {
+              private store: Store<any>,  // TODO type
+  ) {
   }
 
   ngOnInit() {

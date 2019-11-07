@@ -2,7 +2,7 @@ import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@ang
 import { Observable } from 'rxjs';
 import { CoursesComponent } from './courses.component';
 
-export class CanDeactivateCourses implements CanDeactivate {
+export class CanDeactivateCourses implements CanDeactivate<CoursesComponent> {
   public canDeactivate(
     component: CoursesComponent,
     route: ActivatedRouteSnapshot,
